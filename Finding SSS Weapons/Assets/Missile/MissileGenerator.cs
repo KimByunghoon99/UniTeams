@@ -5,9 +5,6 @@ using UnityEngine;
 public class MissileGenerator : MonoBehaviour
 {
     public GameObject missilePrefab;
-    float span = 1.0f;
-    float delta = 0;
-
 
     public void generateMissile(Vector3 targetPos)
     {
