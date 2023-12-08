@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunCtil : MonoBehaviour
+public class GunCtrl : MonoBehaviour
 {
     public GameObject bullet;
     public GameObject bullet2;

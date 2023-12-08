@@ -52,6 +52,7 @@ public class SkillSelect2 : MonoBehaviour
     // 버튼 클릭 시 호출되는 함수
     public void OnSkillButtonClick(int buttonIndex)
     {
+        Debug.Log("Clicked Button Index: " + buttonIndex);
         HideButtons();
     }
 }
