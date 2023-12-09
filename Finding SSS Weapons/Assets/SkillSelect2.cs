@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class SkillSelect2 : MonoBehaviour
 {
-    public Button skillButton1;
-    public Button skillButton2;
-    public Button skillButton3;
+    public Button skillButton4;
+    public Button skillButton5;
+    public Button skillButton6;
     public float delayToShowButtons = 5.0f;
     private bool buttonsVisible = false;
     private float timer = 0.0f;
@@ -36,17 +36,17 @@ public class SkillSelect2 : MonoBehaviour
     // 버튼 숨기기
     void HideButtons()
     {
-        skillButton1.gameObject.SetActive(false);
-        skillButton2.gameObject.SetActive(false);
-        skillButton3.gameObject.SetActive(false);
+        skillButton4.gameObject.SetActive(false);
+        skillButton5.gameObject.SetActive(false);
+        skillButton6.gameObject.SetActive(false);
     }
 
     // 버튼 보이기
     void ShowButtons()
     {
-        skillButton1.gameObject.SetActive(true);
-        skillButton2.gameObject.SetActive(true);
-        skillButton3.gameObject.SetActive(true);
+        skillButton4.gameObject.SetActive(true);
+        skillButton5.gameObject.SetActive(true);
+        skillButton6.gameObject.SetActive(true);
     }
 
     // 버튼 클릭 시 호출되는 함수
