@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class PlayerSkill : MonoBehaviour
 {
-    //¿ìÅ¬¸¯ ÀÌµ¿ ÁÂÅ¬¸¯ ÆòÅ¸°¡ »ç¿ë°¨ÀÌ ¾ÈÁÁÀ» °Í °°À½
-    //´ë¾È 1: ÀÌµ¿À» wasd, 1234·Î ½ºÅ³ ÀåÀü, ÁÂÅ¬¸¯ ÆòÅ¸ ¶Ç´Â ½ºÅ³ ½ÃÀü => ÀÌµ¿ ½ºÅ©¸³Æ®µµ ¹Ù²ã¾ß ÇÏ°í ½ºÅ³ Å°ÇÒ´çµµ ¹Ù²ã¾ß ÇÔ
-    //´ë¾È 2: ÀÌµ¿À» ¿ìÅ¬¸¯, qwer·Î ½ºÅ³ ÀåÀü, ½ºÆäÀÌ½º¹Ù ÆòÅ¸ ¶Ç´Â ½ºÅ³ ½ÃÀü => ¿©±â ½ºÅ©¸³Æ®¿¡¼­ Input.GetMouseButtonDown(0)À» Input.GetKeyDown(KeyCode.Space)·Î¸¸ ¹Ù²Ù¸é µÊ , ½ºÆäÀÌ½º ³Ê¹« ½Ã²ô·´´Ù ½ÍÀ¸¸é ´Ù¸¥Å°µµ °¡´É
+    //ìš°í´ë¦­ ì´ë™ ì¢Œí´ë¦­ í‰íƒ€ê°€ ì‚¬ìš©ê°ì´ ì•ˆì¢‹ì„ ê²ƒ ê°™ìŒ
+    //ëŒ€ì•ˆ 1: ì´ë™ì„ wasd, 1234ë¡œ ìŠ¤í‚¬ ì¥ì „, ì¢Œí´ë¦­ í‰íƒ€ ë˜ëŠ” ìŠ¤í‚¬ ì‹œì „ => ì´ë™ ìŠ¤í¬ë¦½íŠ¸ë„ ë°”ê¿”ì•¼ í•˜ê³  ìŠ¤í‚¬ í‚¤í• ë‹¹ë„ ë°”ê¿”ì•¼ í•¨
+    //ëŒ€ì•ˆ 2: ì´ë™ì„ ìš°í´ë¦­, qwerë¡œ ìŠ¤í‚¬ ì¥ì „, ìŠ¤í˜ì´ìŠ¤ë°” í‰íƒ€ ë˜ëŠ” ìŠ¤í‚¬ ì‹œì „ => ì—¬ê¸° ìŠ¤í¬ë¦½íŠ¸ì—ì„œ Input.GetMouseButtonDown(0)ì„ Input.GetKeyDown(KeyCode.Space)ë¡œë§Œ ë°”ê¾¸ë©´ ë¨ , ìŠ¤í˜ì´ìŠ¤ ë„ˆë¬´ ì‹œë„ëŸ½ë‹¤ ì‹¶ìœ¼ë©´ ë‹¤ë¥¸í‚¤ë„ ê°€ëŠ¥
 
-    //11¹ø 12¹ø ½ºÅ³ ¹Ì¿Ï¼º..
-    //¹æ¹ı 1: ±×³É ³¯¸Ô ½ºÅ³ ³Ö±â ex) Å¸°ÙÆÃÀ¸·Î ÀúÁÖ °É±â, È¸º¹ ½ºÅ³
-    //¹æ¹ı 2: 10¹ø È¸¿À¸® ½ºÅ³À» ºĞÈ­ ½ÃÄÑ¼­ 11¹øÀº ÀÛÀºÈ¸¿À¸® ¿©·¯°³ 12¹øÀº ÃßÀû ¾ÈÇÏ´Â ´ë½Å Á¦ÀÏ Å©°í ¼¾ È¸¿À¸® ¼³Ä¡±â
+    //11ë²ˆ 12ë²ˆ ìŠ¤í‚¬ ë¯¸ì™„ì„±..
+    //ë°©ë²• 1: ê·¸ëƒ¥ ë‚ ë¨¹ ìŠ¤í‚¬ ë„£ê¸° ex) íƒ€ê²ŸíŒ…ìœ¼ë¡œ ì €ì£¼ ê±¸ê¸°, íšŒë³µ ìŠ¤í‚¬
+    //ë°©ë²• 2: 10ë²ˆ íšŒì˜¤ë¦¬ ìŠ¤í‚¬ì„ ë¶„í™” ì‹œì¼œì„œ 11ë²ˆì€ ì‘ì€íšŒì˜¤ë¦¬ ì—¬ëŸ¬ê°œ 12ë²ˆì€ ì¶”ì  ì•ˆí•˜ëŠ” ëŒ€ì‹  ì œì¼ í¬ê³  ì„¼ íšŒì˜¤ë¦¬ ì„¤ì¹˜ê¸°
     public GameObject SkillSelectManager, RangeIndicator;
     public GameObject BulletGenerator, MissileGenerator, KnifeGenerator, TornadoGenerator;
     public LightningGenerator lightningGenerator;
@@ -20,6 +20,7 @@ public class PlayerSkill : MonoBehaviour
     Vector3 mousePos, transPos, targetPos;
     Vector2 direction;
     public string enemyTag = "Enemy";
+    public int attackRange = 10;
     int skillReady = 0;
     int BaseAttack = 0;
     int ShotStack = 0;
@@ -29,10 +30,11 @@ public class PlayerSkill : MonoBehaviour
     float WcoolTime = 0f;
     float EcoolTime = 0f;
     float RcoolTime = 0f;
+    private Transform targetEnemy;
+
 
     void Start()
     {
-        
     }
 
     void CalTargetPos()
@@ -44,6 +46,11 @@ public class PlayerSkill : MonoBehaviour
     void CalDirection()
     {
        direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+
+    }
+    void CalEnemyDirection()
+    {
+        direction = targetEnemy.position - transform.position;
 
     }
     // Update is called once per frame
@@ -150,7 +157,7 @@ public class PlayerSkill : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("½ºÅ³ ¹üÀ§ ¾È¿¡ ÀûÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+                        Debug.Log("ìŠ¤í‚¬ ë²”ìœ„ ì•ˆì— ì ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
                     }
                     break;
 
@@ -165,55 +172,83 @@ public class PlayerSkill : MonoBehaviour
         {
             skillReady = 0;
         }
-        if (Input.GetMouseButton(0))
+        if (skillReady == 0)
         {
-            if (skillReady == 0)
+            FindClosestEnemy();
+            CalEnemyDirection();
+            Debug.Log(targetEnemy.position);
+            ShotStack = BulletGenerator.GetComponent<BulletGenerator>().GenerateBullet(BaseAttack, direction, transform.position);
+            if (BaseAttack == 1 && ShotStack > 20)
             {
-                CalDirection();
-                ShotStack = BulletGenerator.GetComponent<BulletGenerator>().GenerateBullet(BaseAttack, direction, transform.position);
-                if(BaseAttack==1 && ShotStack > 20)
-                {
-                    BaseAttack = 0;
-                    RangeIndicator.GetComponent<RangeIndicator>().HideBaseAttackIcon();
-                }
-                if(BaseAttack==2 && ShotStack > 10)
-                {
-                    BaseAttack = 0;
-                    RangeIndicator.GetComponent<RangeIndicator>().HideBaseAttackIcon();
+                BaseAttack = 0;
+                RangeIndicator.GetComponent<RangeIndicator>().HideBaseAttackIcon();
+            }
+            if (BaseAttack == 2 && ShotStack > 10)
+            {
+                BaseAttack = 0;
+                RangeIndicator.GetComponent<RangeIndicator>().HideBaseAttackIcon();
 
-                }
-                if (BaseAttack == 3 && ShotStack > 5)
-                {
-                    BaseAttack = 0;
-                    RangeIndicator.GetComponent<RangeIndicator>().HideBaseAttackIcon();
+            }
+            if (BaseAttack == 3 && ShotStack > 5)
+            {
+                BaseAttack = 0;
+                RangeIndicator.GetComponent<RangeIndicator>().HideBaseAttackIcon();
 
-                }
             }
         }
     }
     void ActivateLightningSkill()
     {
-        // LightningGenerator ½ºÅ©¸³Æ®ÀÇ GenerateLightning ¸Ş¼­µå¸¦ È£ÃâÇÏ¿© ¹ø°³¸¦ »ı¼º
+        if (lightningGenerator == null)
+        {
+            Debug.LogError("lightningGeneratorê°€ nullì…ë‹ˆë‹¤. ActivateLightningSkillì„ í˜¸ì¶œí•˜ê¸° ì „ì— í• ë‹¹ë˜ì—ˆëŠ”ì§€ í™•ì¸í•˜ì‹­ì‹œì˜¤.");
+        }
+        // LightningGenerator ìŠ¤í¬ë¦½íŠ¸ì˜ GenerateLightning ë©”ì„œë“œë¥¼ í˜¸ì¶œí•˜ì—¬ ë²ˆê°œë¥¼ ìƒì„±
         StartCoroutine(lightningGenerator.GenerateLightning());
     }
     bool IsEnemyInRange()
     {
         CalTargetPos();
         followRange = TornadoPrefab.GetComponent<Tornado>().followRange;
-        // targetPos ÁÖº¯¿¡ ¹İ°æ followRange ¾È¿¡ ÀÖ´Â ¸ğµç Äİ¶óÀÌ´õµéÀ» °¡Á®¿È
+        // targetPos ì£¼ë³€ì— ë°˜ê²½ followRange ì•ˆì— ìˆëŠ” ëª¨ë“  ì½œë¼ì´ë”ë“¤ì„ ê°€ì ¸ì˜´
         Collider2D[] colliders = Physics2D.OverlapCircleAll(targetPos, followRange);
 
-        // °¡Á®¿Â Äİ¶óÀÌ´õµéÀ» ¼øÈ¸ÇÏ¸é¼­ Enemy ÅÂ±×¸¦ °¡Áø ¹°Ã¼°¡ ÀÖ´ÂÁö È®ÀÎ
+        // ê°€ì ¸ì˜¨ ì½œë¼ì´ë”ë“¤ì„ ìˆœíšŒí•˜ë©´ì„œ Enemy íƒœê·¸ë¥¼ ê°€ì§„ ë¬¼ì²´ê°€ ìˆëŠ”ì§€ í™•ì¸
         foreach (Collider2D collider in colliders)
         {
             if (collider.CompareTag(enemyTag))
             {
-                // Enemy ÅÂ±×¸¦ °¡Áø ¹°Ã¼°¡ ÀÖÀ¸¸é true ¹İÈ¯
+                // Enemy íƒœê·¸ë¥¼ ê°€ì§„ ë¬¼ì²´ê°€ ìˆìœ¼ë©´ true ë°˜í™˜
                 return true;
             }
         }
 
-        // Enemy ÅÂ±×¸¦ °¡Áø ¹°Ã¼°¡ ¾øÀ¸¸é false ¹İÈ¯
+        // Enemy íƒœê·¸ë¥¼ ê°€ì§„ ë¬¼ì²´ê°€ ì—†ìœ¼ë©´ false ë°˜í™˜
         return false;
+    }
+
+    private void FindClosestEnemy()
+    {
+        // íŠ¹ì • ë°˜ê²½ ë‚´ì—ì„œ Enemy íƒœê·¸ë¥¼ ê°€ì§„ ì  ì°¾ê¸°
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
+
+        if (colliders.Length > 0)
+        {
+            // ê°€ì¥ ê°€ê¹Œìš´ ì  ì°¾ê¸°
+            float closestDistance = float.MaxValue;
+
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.CompareTag("Enemy") || collider.CompareTag("Monster"))
+                {
+                    float distance = Vector3.Distance(transform.position, collider.transform.position);
+                    if (distance < closestDistance)
+                    {
+                        closestDistance = distance;
+                        targetEnemy = collider.transform;
+                    }
+                }
+            }
+        }
     }
 }
