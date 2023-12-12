@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 234321767}
   m_Layer: 0
   m_Name: MiddleBossMonster
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -432,7 +432,7 @@ GameObject:
   - component: {fileID: 274587935}
   m_Layer: 0
   m_Name: FirstMonster
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -532,7 +532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c84b3f847f1aaa1488c7bf89a9807b9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 3
   attckConstant: 250
   monsterState: 0
   player: {fileID: 891628872}
@@ -1178,6 +1178,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  playerHP: 300
+  playerIsDead: 0
 --- !u!212 &891628874
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1320,7 +1322,7 @@ CapsuleCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 1.1111112}
@@ -3623,6 +3625,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2723574573677656509, guid: 682f8dff6a89ae443b7186b44af7ba28, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2772837608788949016, guid: 682f8dff6a89ae443b7186b44af7ba28, type: 3}
       propertyPath: m_Mass
       value: 1
@@ -3630,6 +3636,14 @@ PrefabInstance:
     - target: {fileID: 2902747219154733089, guid: 682f8dff6a89ae443b7186b44af7ba28, type: 3}
       propertyPath: m_Name
       value: SecondMonster
+      objectReference: {fileID: 0}
+    - target: {fileID: 5395855845926741344, guid: 682f8dff6a89ae443b7186b44af7ba28, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5395855845926741344, guid: 682f8dff6a89ae443b7186b44af7ba28, type: 3}
+      propertyPath: m_UsedByEffector
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6056887540601342043, guid: 682f8dff6a89ae443b7186b44af7ba28, type: 3}
       propertyPath: player
