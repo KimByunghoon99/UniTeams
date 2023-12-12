@@ -14,13 +14,13 @@ public class MiddleBossMonster : MonoBehaviour
     protected int hp = 500;
 
     [SerializeField]
-    protected float speed = 4f;
+    protected float speed = 4.5f;
 
     [SerializeField]
     protected int attackConstant = 2000;
 
-    protected float attackRange = 7f;
-    protected float chaseRange = 9f;
+    protected float attackRange = 9f;
+    protected float chaseRange = 13f;
     protected float patrolRange = 5f;
     public MonsterState monsterState;
     public GameObject player;
@@ -186,7 +186,7 @@ public class MiddleBossMonster : MonoBehaviour
                 bullet.GetComponent<Transform>().position = transform.position;
                 bullet.GetComponent<Transform>().rotation = Quaternion.Euler(rotatedDir);
                 bullet.GetComponent<Transform>().rotation *= Quaternion.Euler(0, 0, 135);
-                bullet.GetComponent<BulletEnemy>().Fire(rotatedDir);
+                bullet.GetComponent<BulletEnemyAccel>().Fire(rotatedDir);
             }
         }
     }

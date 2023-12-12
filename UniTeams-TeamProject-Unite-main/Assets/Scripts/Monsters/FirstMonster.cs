@@ -22,6 +22,7 @@ public class FirstsMonster : MonoBehaviour
     protected float patrolRange = 4f;
     public MonsterState monsterState;
     public GameObject player;
+    public GameObject questManager;
     protected SpriteRenderer spriteRenderer;
 
     protected new Rigidbody2D rigidbody2D;
@@ -31,6 +32,9 @@ public class FirstsMonster : MonoBehaviour
 
     void Start()
     {
+        Invoke("Die", 2.5f); // 테스트용 무조건 삭제해야함
+        player = GameObject.FindWithTag("Player");
+        questManager = GameObject.FindWithTag("Quest");
         monsterState = MonsterState.Patrol;
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -142,9 +146,12 @@ public class FirstsMonster : MonoBehaviour
 
     void Die()
     {
-        // 죽을 때 애니메이션 처리도 나중에 추가
+        if (questManager.GetComponent<QuestManager>().FirstMonsterKill != -1)
+        {
+            questManager.GetComponent<QuestManager>().FirstMonsterKill++;
+        }
 
         monsterState = MonsterState.Dead;
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

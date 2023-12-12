@@ -7,11 +7,13 @@ public class PlayerMoveToClick : MonoBehaviour
 {
     [SerializeField]
     float speed = 5f;
+    bool isSlow = false;
+
     [SerializeField]
     float playerHP = 300;
+
     [SerializeField]
     bool playerIsDead = false;
-
 
     Vector3 mousePos,
         transPos,
@@ -20,15 +22,15 @@ public class PlayerMoveToClick : MonoBehaviour
     SpriteRenderer spriter;
     Animator animator;
 
-    void CalTargetPos() 
+    void CalTargetPos()
     {
         mousePos = Input.mousePosition;
         transPos = Camera.main.ScreenToWorldPoint(mousePos);
-        targetPos = new Vector3(transPos.x, transPos.y, 0); 
-        dist = targetPos - transform.position; 
+        targetPos = new Vector3(transPos.x, transPos.y, 0);
+        dist = targetPos - transform.position;
     }
 
-    void Move() 
+    void Move()
     {
         transform.position = Vector3.MoveTowards(
             transform.position,
@@ -37,9 +39,8 @@ public class PlayerMoveToClick : MonoBehaviour
         );
     }
 
-    public bool Run(Vector3 targetPos) 
+    public bool Run(Vector3 targetPos)
     {
-       
         float distance = Vector3.Distance(transform.position, targetPos);
         if (distance >= 0.00001f)
         {
@@ -69,8 +70,19 @@ public class PlayerMoveToClick : MonoBehaviour
                 this.playerHP = this.playerHP - 10;
             }
         }
-
     }
+
+    public void Slow()
+    {
+        speed = 2.5f;
+        Invoke("SlowRestore", 2f);
+    }
+
+    void SlowRestore()
+    {
+        speed = 5f;
+    }
+
     public void OnCollisionStay2D(Collision2D collision)
     {
         if (this.playerHP <= 0)
@@ -85,28 +97,27 @@ public class PlayerMoveToClick : MonoBehaviour
                 this.playerHP = this.playerHP - Time.deltaTime * 10;
             }
         }
-
     }
+
     // Update is called once per frame
     void Update()
     {
         if (playerIsDead == false)
         {
-            if (Input.GetMouseButtonDown(1))  
+            if (Input.GetMouseButtonDown(1))
             {
-                CalTargetPos();      
-                spriter.flipX = dist.x < 0; 
+                CalTargetPos();
+                spriter.flipX = dist.x < 0;
             }
             if (Run(targetPos))
             {
-                animator.SetBool("iswalk", true);   
+                animator.SetBool("iswalk", true);
                 Move();
             }
             else
             {
-                animator.SetBool("iswalk", false);  
+                animator.SetBool("iswalk", false);
             }
         }
-
     }
 }

@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class SecondMonster : MonoBehaviour
+public class SecondBossMonster : MonoBehaviour
 {
     public enum MonsterState
     {
@@ -11,22 +11,22 @@ public class SecondMonster : MonoBehaviour
         Dead
     }
 
-    protected int hp = 100;
+    protected int hp = 500;
 
     [SerializeField]
-    protected float speed = 4f;
+    protected float speed = 4.5f;
 
     [SerializeField]
-    protected int attckConstant = 250;
+    protected int attackConstant = 2000;
+    protected bool isAttacking = false;
 
-    protected float attackRange = 7f;
-    protected float chaseRange = 9f;
+    protected float attackRange = 9f;
+    protected float chaseRange = 13f;
     protected float patrolRange = 5f;
     public MonsterState monsterState;
-    public GameObject player; // 지금은 드래그로 연결되어 있는데 나중에 Find로 수정해야 할 수도 있음
-    public GameObject bulletPrefab; // 이건 상위 몬스터를 만들면서 수정
+    public GameObject player;
+    public GameObject bulletPrefab;
     protected SpriteRenderer spriteRenderer;
-    public GameObject questManager;
 
     protected new Rigidbody2D rigidbody2D;
 
@@ -36,8 +36,6 @@ public class SecondMonster : MonoBehaviour
 
     void Start()
     {
-        questManager = GameObject.FindWithTag("Quest");
-        player = GameObject.FindWithTag("Player");
         monsterState = MonsterState.Patrol;
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -55,16 +53,6 @@ public class SecondMonster : MonoBehaviour
                 break;
             case MonsterState.Attack:
                 Attack();
-                if (attackTimer > attckConstant)
-                {
-                    DelegateAttack();
-                    attackTimer = 0;
-                }
-                else
-                {
-                    attackTimer++;
-                }
-
                 break;
             case MonsterState.Chase:
                 Chase();
@@ -121,6 +109,7 @@ public class SecondMonster : MonoBehaviour
         {
             // If the player is within the attack range, start attacking
             monsterState = MonsterState.Attack;
+            anim.SetBool("isIdle", false);
         }
         else if (distanceToPlayer > chaseRange)
         {
@@ -132,29 +121,50 @@ public class SecondMonster : MonoBehaviour
 
     void Attack()
     {
-        Vector2 playerPosition = player.transform.position;
-        float distanceToPlayer = Vector2.Distance(transform.position, playerPosition);
-
-        if (distanceToPlayer > attackRange)
+        // Debug.Log("Attack 실행");
+        if (!isAttacking)
         {
-            monsterState = MonsterState.Chase;
-            StartCoroutine(UpdatePatrolTarget());
+            anim.Play("Attack");
+            isAttacking = true;
         }
     }
 
     void DelegateAttack()
     {
+        anim.SetBool("isIdle", true);
+        monsterState = MonsterState.Patrol;
+
         Vector3 playerPosition = player.transform.position;
         Vector3 dir = playerPosition - this.transform.position;
         dir = dir.normalized;
 
+        float distanceToPlayer = Vector2.Distance(transform.position, playerPosition);
+
         GameObject bullet = Instantiate(bulletPrefab, this.transform);
         if (bullet != null)
         {
-            bullet.GetComponent<Transform>().position = transform.position;
+            Vector3 shootPosition = transform.position;
+            if (spriteRenderer.flipX)
+            {
+                shootPosition.x -= 2;
+            }
+            else
+            {
+                shootPosition.x += 2;
+            }
+
+            bullet.GetComponent<Transform>().position = shootPosition;
             bullet.GetComponent<Transform>().rotation = Quaternion.FromToRotation(Vector3.up, dir);
-            bullet.GetComponent<BulletEnemy>().Fire(dir);
+            bullet.GetComponent<BulletEnemySlow>().Fire(dir);
         }
+
+        Invoke("returnAttack", 2.5f);
+    }
+
+    void returnAttack()
+    {
+        Debug.Log("return attack");
+        isAttacking = false;
     }
 
     IEnumerator UpdatePatrolTarget()
@@ -194,11 +204,8 @@ public class SecondMonster : MonoBehaviour
     void Die()
     {
         // 죽을 때 애니메이션 처리도 나중에 추가
-        if (questManager.GetComponent<QuestManager>().SecondMonsterKill != -1)
-        {
-            questManager.GetComponent<QuestManager>().SecondMonsterKill++;
-        }
+
         monsterState = MonsterState.Dead;
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }
