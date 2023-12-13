@@ -5,35 +5,42 @@ using UnityEngine;
 
 public class PlayerSkill : MonoBehaviour
 {
-    //우클릭 이동 좌클릭 평타가 사용감이 안좋을 것 같음
-    //대안 1: 이동을 wasd, 1234로 스킬 장전, 좌클릭 평타 또는 스킬 시전 => 이동 스크립트도 바꿔야 하고 스킬 키할당도 바꿔야 함
-    //대안 2: 이동을 우클릭, qwer로 스킬 장전, 스페이스바 평타 또는 스킬 시전 => 여기 스크립트에서 Input.GetMouseButtonDown(0)을 Input.GetKeyDown(KeyCode.Space)로만 바꾸면 됨 , 스페이스 너무 시끄럽다 싶으면 다른키도 가능
-
-    //11번 12번 스킬 미완성..
-    //방법 1: 그냥 날먹 스킬 넣기 ex) 타겟팅으로 저주 걸기, 회복 스킬
-    //방법 2: 10번 회오리 스킬을 분화 시켜서 11번은 작은회오리 여러개 12번은 추적 안하는 대신 제일 크고 센 회오리 설치기
-    public GameObject SkillSelectManager, RangeIndicator;
+    public GameObject RangeIndicator;
     public GameObject BulletGenerator, MissileGenerator, KnifeGenerator, TornadoGenerator;
     public LightningGenerator lightningGenerator;
     public GameObject ShieldPrefab;
+    public GameObject HealPrefab;
     public GameObject TornadoPrefab;
+    public GameObject TargetLightningPrefab;
     Vector3 mousePos, transPos, targetPos;
     Vector2 direction;
     public string enemyTag = "Enemy";
+    public int attackRange = 10;
+    public float ShieldSpan = 5f;
+    public float HealAmount = 100f;
+    public float PlayerMaxHP = 300f;
+    public int QskillReady = 0;
+    public int WskillReady = 0;
+    public int EskillReady = 0;
+    public int RskillReady = 0;
+    public float QCoolTime, WCoolTime, ECoolTime, RCoolTime;
     int skillReady = 0;
     int BaseAttack = 0;
     int ShotStack = 0;
     float followRange = 0f;
     float CoolTime = 0f;
-    float QcoolTime = 0f;
-    float WcoolTime = 0f;
-    float EcoolTime = 0f;
-    float RcoolTime = 0f;
+    float QReadyTime, WReadyTime, EReadyTime, RReadyTime = 0f;
+
+    private Transform targetEnemy;
+
 
     void Start()
     {
-        
-    }
+    QCoolTime = 15f;
+    WCoolTime = 20f;
+    ECoolTime = 10f;
+    RCoolTime = 30f;
+}
 
     void CalTargetPos()
     {
@@ -43,7 +50,12 @@ public class PlayerSkill : MonoBehaviour
     }
     void CalDirection()
     {
-       direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+
+    }
+    void CalEnemyDirection()
+    {
+        direction = targetEnemy.position - transform.position;
 
     }
     // Update is called once per frame
@@ -51,61 +63,91 @@ public class PlayerSkill : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            CoolTime = SkillSelectManager.GetComponent<SkillManage>().QskillCoolTime;
-            if (Time.time > QcoolTime)
+            if(QskillReady == 0)
             {
-                RangeIndicator.GetComponent<RangeIndicator>().HideCoolTime();
-                BaseAttack = SkillSelectManager.GetComponent<SkillManage>().QskillReady;
-                RangeIndicator.GetComponent<RangeIndicator>().setRangeType(BaseAttack);
-                QcoolTime = Time.time + CoolTime;
-            }
-            else
-            {               
-                RangeIndicator.GetComponent<RangeIndicator>().ShowCoolTime(CoolTime);
-                skillReady = -1;
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            if (Time.time > WcoolTime)
-            {
-                skillReady = SkillSelectManager.GetComponent<SkillManage>().WskillReady;
-                RangeIndicator.GetComponent<RangeIndicator>().setRangeType(skillReady);
 
             }
             else
             {
-                RangeIndicator.GetComponent<RangeIndicator>().ShowCoolTime(CoolTime);
-                skillReady = -1;
+                if (Time.time > QReadyTime)
+                {
+                    BaseAttack = QskillReady;
+                    RangeIndicator.GetComponent<RangeIndicator>().setRangeType(BaseAttack);
+                    QReadyTime = Time.time + QCoolTime;
+                }
+                else
+                {
+                    if (BaseAttack == 0) //평타강화지속시간과 쿨타임 사이 시간
+                    {
+                        CoolTime = QReadyTime - Time.time;
+                        RangeIndicator.GetComponent<RangeIndicator>().BaseAttackShowCoolTime(CoolTime);
+                    }
+                }
+            }
+
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            if (WskillReady == 0)
+            {
+
+            }
+            else
+            {
+                if (Time.time > WReadyTime)
+                {
+                    skillReady = WskillReady;
+                    RangeIndicator.GetComponent<RangeIndicator>().setRangeType(skillReady);
+
+                }
+                else
+                {
+                    CoolTime = WReadyTime - Time.time;
+                    RangeIndicator.GetComponent<RangeIndicator>().ShowCoolTime(CoolTime);
+                }
             }
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (Time.time > EcoolTime)
+            if (EskillReady == 0)
             {
-                skillReady = SkillSelectManager.GetComponent<SkillManage>().EskillReady;
-                RangeIndicator.GetComponent<RangeIndicator>().setRangeType(skillReady);
-               
+
             }
             else
             {
-                RangeIndicator.GetComponent<RangeIndicator>().ShowCoolTime(CoolTime);
-                skillReady = -1;
+                if (Time.time > EReadyTime)
+                {
+                    skillReady = EskillReady;
+                    RangeIndicator.GetComponent<RangeIndicator>().setRangeType(skillReady);
+
+                }
+                else
+                {
+                    CoolTime = EReadyTime - Time.time;
+                    RangeIndicator.GetComponent<RangeIndicator>().ShowCoolTime(CoolTime);
+                }
             }
         }
-          
+
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if (Time.time > RcoolTime)
+            if (RskillReady == 0)
             {
-                skillReady = SkillSelectManager.GetComponent<SkillManage>().RskillReady;
-                RangeIndicator.GetComponent<RangeIndicator>().setRangeType(skillReady);               
+
             }
             else
             {
-                RangeIndicator.GetComponent<RangeIndicator>().ShowCoolTime(CoolTime);
-                skillReady = -1;
+                if (Time.time > RReadyTime)
+                {
+                    skillReady = RskillReady;
+                    RangeIndicator.GetComponent<RangeIndicator>().setRangeType(skillReady);
+                }
+                else
+                {
+                    CoolTime = RReadyTime - Time.time;
+                    RangeIndicator.GetComponent<RangeIndicator>().ShowCoolTime(CoolTime);
+                }
             }
         }
         if (Input.GetMouseButtonDown(0) && skillReady != 0)
@@ -115,84 +157,108 @@ public class PlayerSkill : MonoBehaviour
                 case 4:
                     CalTargetPos();
                     MissileGenerator.GetComponent<MissileGenerator>().generateMissile(targetPos);
-                    CoolTime = SkillSelectManager.GetComponent<SkillManage>().WskillCoolTime;
-                    WcoolTime = Time.time + CoolTime;
+                    WReadyTime = Time.time + WCoolTime;
                     break;
 
                 case 5:
                     ActivateLightningSkill();
-                    CoolTime = SkillSelectManager.GetComponent<SkillManage>().WskillCoolTime;
-                    WcoolTime = Time.time + CoolTime;
+                    WReadyTime = Time.time + WCoolTime;
                     break;
 
                 case 6:
                     GameObject Shield = Instantiate(ShieldPrefab);
-                    CoolTime = SkillSelectManager.GetComponent<SkillManage>().WskillCoolTime;
-                    WcoolTime = Time.time + CoolTime;
+                    Destroy(Shield, ShieldSpan);
+                    WReadyTime = Time.time + WCoolTime;
                     break;
 
                 case 7:
                 case 8:
                 case 9:
                     CalDirection();
-                    Debug.Log(skillReady);
-                    KnifeGenerator.GetComponent<KnifeGenerator>().GenerateKnife(skillReady,direction);
-                    CoolTime = SkillSelectManager.GetComponent<SkillManage>().EskillCoolTime;
-                    EcoolTime = Time.time + CoolTime;
+                    KnifeGenerator.GetComponent<KnifeGenerator>().GenerateKnife(skillReady, direction);
+                    EReadyTime = Time.time + ECoolTime;
                     break;
                 case 10:
                     CalTargetPos();
                     if (IsEnemyInRange())
                     {
                         TornadoGenerator.GetComponent<TornadoGenerator>().GenerateTornado(targetPos);
-                        CoolTime = SkillSelectManager.GetComponent<SkillManage>().RskillCoolTime;
-                        RcoolTime = Time.time + CoolTime;
+                        RReadyTime = Time.time + RCoolTime;
                     }
                     else
                     {
                         Debug.Log("스킬 범위 안에 적이 존재하지 않습니다.");
                     }
                     break;
-
-                default:
+                case 11:
+                    PlayerMoveToClick player = GetComponent<PlayerMoveToClick>();
+                    if (player.playerHP > PlayerMaxHP - HealAmount) //풀피까지만 체력 채워줌
+                        player.playerHP = PlayerMaxHP;
+                    else if (player.playerHP == PlayerMaxHP) { // 풀피면 발동 안됨
+                        Debug.Log("플레이어의 체력이 이미 가득찼습니다.");
+                        break;
+                    }   
+                    else
+                        player.playerHP += HealAmount;
+                    GameObject Heal = Instantiate(HealPrefab);
+                    Destroy(Heal,1.1f);                   
+                    Heal.transform.position = transform.position;
+                    RReadyTime = Time.time + RCoolTime;
                     break;
+                case 12:
+                    Vector2 clickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    RaycastHit2D hit = Physics2D.Raycast(clickPosition, Vector2.zero);
+                    if (hit.collider != null)
+                    {
+                        if(hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("Monster"))
+                        {
+                            targetPos = hit.transform.position;
+                            Instantiate(TargetLightningPrefab, targetPos, Quaternion.identity);
+                            RReadyTime = Time.time + RCoolTime;
+                        }
+                        else
+                        {
+                            Debug.Log("적을 선택해주세요.");
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("아무것도 선택되지 않았습니다.");
+                    }
+                    break;
+                default:
+                    break;            
             }
-
-            skillReady = - 1;
-            
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
             skillReady = 0;
+
         }
-        if (Input.GetMouseButton(0))
+        FindClosestEnemy();
+        CalEnemyDirection();
+        ShotStack = BulletGenerator.GetComponent<BulletGenerator>().GenerateBullet(BaseAttack, direction, transform.position);
+        if (BaseAttack == 1 && ShotStack > 20) 
         {
-            if (skillReady == 0)
-            {
-                CalDirection();
-                ShotStack = BulletGenerator.GetComponent<BulletGenerator>().GenerateBullet(BaseAttack, direction, transform.position);
-                if(BaseAttack==1 && ShotStack > 20)
-                {
-                    BaseAttack = 0;
-                    RangeIndicator.GetComponent<RangeIndicator>().HideBaseAttackIcon();
-                }
-                if(BaseAttack==2 && ShotStack > 10)
-                {
-                    BaseAttack = 0;
-                    RangeIndicator.GetComponent<RangeIndicator>().HideBaseAttackIcon();
+            BaseAttack = 0;
+            RangeIndicator.GetComponent<RangeIndicator>().HideBaseAttackIcon();
+        }
+        if (BaseAttack == 2 && ShotStack > 10)
+        {
+            BaseAttack = 0;
+            RangeIndicator.GetComponent<RangeIndicator>().HideBaseAttackIcon();
 
-                }
-                if (BaseAttack == 3 && ShotStack > 5)
-                {
-                    BaseAttack = 0;
-                    RangeIndicator.GetComponent<RangeIndicator>().HideBaseAttackIcon();
+        }
+        if (BaseAttack == 3 && ShotStack > 5)
+        {
+            BaseAttack = 0;
+            RangeIndicator.GetComponent<RangeIndicator>().HideBaseAttackIcon();
 
-                }
-            }
         }
     }
     void ActivateLightningSkill()
     {
+        if (lightningGenerator == null)
+        {
+            Debug.LogError("lightningGenerator가 null입니다. ActivateLightningSkill을 호출하기 전에 할당되었는지 확인하십시오.");
+        }
         // LightningGenerator 스크립트의 GenerateLightning 메서드를 호출하여 번개를 생성
         StartCoroutine(lightningGenerator.GenerateLightning());
     }
@@ -215,5 +281,30 @@ public class PlayerSkill : MonoBehaviour
 
         // Enemy 태그를 가진 물체가 없으면 false 반환
         return false;
+    }
+
+    private void FindClosestEnemy()
+    {
+        // 특정 반경 내에서 Enemy 태그를 가진 적 찾기
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
+
+        if (colliders.Length > 0)
+        {
+            // 가장 가까운 적 찾기
+            float closestDistance = float.MaxValue;
+
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.CompareTag("Enemy") || collider.CompareTag("Monster"))
+                {
+                    float distance = Vector3.Distance(transform.position, collider.transform.position);
+                    if (distance < closestDistance)
+                    {
+                        closestDistance = distance;
+                        targetEnemy = collider.transform;
+                    }
+                }
+            }
+        }
     }
 }

@@ -7,8 +7,8 @@ public class BulletGenerator : MonoBehaviour
     public GameObject BulletPrefab;
     public GameObject BulletPrefab1;
     public GameObject BulletPrefab2;
-    public float timeBetweenShots = 0.6f;
-    public float timeBetweenShots1 = 0.3f;
+    public float timeBetweenShots = 0.5f;
+    public float timeBetweenShots1 = 0.25f;
     public float timeBetweenShots2 = 1f;
     public int numberOfShots1 = 3;
     public float fanSpreadAngle = 45f; // 부채꼴의 각도

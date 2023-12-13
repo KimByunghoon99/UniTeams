@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4d30dd5d38a35a046b558b17136c147a
+guid: 00c1dc737dd2a804287227f3c102e09a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Thunderstrike w blur_0
+      name: Holy VFX 02_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74a316c7d2d1d4646b328d8fc11dabb1
-      internalID: -835084684
+      spriteID: 141ffb0da113b864ab4885d69d7fe529
+      internalID: -1907065148
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Thunderstrike w blur_1
+      name: Holy VFX 02_1
       rect:
         serializedVersion: 2
-        x: 64
+        x: 48
         y: 0
-        width: 64
-        height: 64
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62ed6b116be67af46aac122abaf40cf1
-      internalID: 1925633005
+      spriteID: 31aec073f0afde24ea70288c0488b144
+      internalID: -2119569794
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Thunderstrike w blur_2
+      name: Holy VFX 02_2
       rect:
         serializedVersion: 2
-        x: 128
+        x: 96
         y: 0
-        width: 64
-        height: 64
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,20 +179,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1c07b5060107bb4cad5046956be38b1
-      internalID: -824315920
+      spriteID: b4b375b7a8e5f5b4eaefaed2ac5d66b0
+      internalID: 1002580265
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Thunderstrike w blur_3
+      name: Holy VFX 02_3
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de4c6846502b6574bb19d20066b385ea
+      internalID: -2065922403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Holy VFX 02_4
       rect:
         serializedVersion: 2
         x: 192
         y: 0
-        width: 64
-        height: 64
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,20 +221,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 67b9ca2e226f453488e8547c3a8eca32
-      internalID: -1375649545
+      spriteID: 18e7036b9681d6147ba8d93ec311821c
+      internalID: 252977915
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Thunderstrike w blur_4
+      name: Holy VFX 02_5
       rect:
         serializedVersion: 2
-        x: 256
+        x: 240
         y: 0
-        width: 64
-        height: 64
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,20 +242,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb325ca8a22dbac448cf934a5f18ad1d
-      internalID: 2060127140
+      spriteID: 1fef4c84227ad9d41b5ebde5bf179f86
+      internalID: -1397236159
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Thunderstrike w blur_5
+      name: Holy VFX 02_6
       rect:
         serializedVersion: 2
-        x: 320
+        x: 288
         y: 0
-        width: 64
-        height: 64
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,20 +263,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0dd4553b938a92a4fb0b35019ed8ed6b
-      internalID: -239956661
+      spriteID: 63e1d38a74de32e44a03ddfb397039f7
+      internalID: -969743970
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Thunderstrike w blur_6
+      name: Holy VFX 02_7
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cc38ee21dc48884f90b12b5402cb545
+      internalID: 1003730904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Holy VFX 02_8
       rect:
         serializedVersion: 2
         x: 384
         y: 0
-        width: 64
-        height: 64
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -263,20 +305,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 68a03943a9cca904ba04bfdea540718e
-      internalID: 1079604729
+      spriteID: 445da90e2310c1b4f93225b78746286e
+      internalID: -341989851
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Thunderstrike w blur_7
+      name: Holy VFX 02_9
       rect:
         serializedVersion: 2
-        x: 448
+        x: 432
         y: 0
-        width: 64
-        height: 64
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -284,20 +326,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 179f6170204ac6f44b7c49a1a7f62fda
-      internalID: -1146910815
+      spriteID: 268cde7ac64d4d4458e6bbb672595986
+      internalID: -1428120584
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Thunderstrike w blur_8
+      name: Holy VFX 02_10
       rect:
         serializedVersion: 2
-        x: 512
+        x: 480
         y: 0
-        width: 64
-        height: 64
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -305,20 +347,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b63b5f79f706304797a6986a47171c2
-      internalID: -1754462215
+      spriteID: 3deb304183478ed4b85c627949d25be6
+      internalID: 267540156
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Thunderstrike w blur_9
+      name: Holy VFX 02_11
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 338d81bf6d05afb45acb7c298882dfed
+      internalID: 1164632384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Holy VFX 02_12
       rect:
         serializedVersion: 2
         x: 576
         y: 0
-        width: 64
-        height: 64
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -326,20 +389,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: adc3abc97d71fc742a1af3327e0f2de3
-      internalID: -210493024
+      spriteID: e6bd66d3a2b9c9544b2723ebf12fc77c
+      internalID: 242383815
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Thunderstrike w blur_10
+      name: Holy VFX 02_13
       rect:
         serializedVersion: 2
-        x: 640
+        x: 624
         y: 0
-        width: 64
-        height: 64
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -347,20 +410,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74ac24da0c406e040a4f0e03fc24804b
-      internalID: 900254332
+      spriteID: e8b0dc663bd7ba94981a9246d35e9d5a
+      internalID: 427555349
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Thunderstrike w blur_11
+      name: Holy VFX 02_14
       rect:
         serializedVersion: 2
-        x: 704
+        x: 672
         y: 0
-        width: 64
-        height: 64
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -368,20 +431,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b36a403b49f803c4ba5c6f933397429a
-      internalID: 2004786119
+      spriteID: 3acaec731b2c3d94b8f011e3dfd5541c
+      internalID: -123622004
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Thunderstrike w blur_12
+      name: Holy VFX 02_15
       rect:
         serializedVersion: 2
-        x: 768
+        x: 720
         y: 0
-        width: 64
-        height: 64
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -389,8 +452,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0710e30229bf8654aa7714fa2764d3ca
-      internalID: 681758882
+      spriteID: 4470d2ddff6b61f4997e2d25347d1a83
+      internalID: -736958627
       vertices: []
       indices: 
       edges: []
@@ -406,19 +469,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Thunderstrike w blur_0: -835084684
-      Thunderstrike w blur_1: 1925633005
-      Thunderstrike w blur_10: 900254332
-      Thunderstrike w blur_11: 2004786119
-      Thunderstrike w blur_12: 681758882
-      Thunderstrike w blur_2: -824315920
-      Thunderstrike w blur_3: -1375649545
-      Thunderstrike w blur_4: 2060127140
-      Thunderstrike w blur_5: -239956661
-      Thunderstrike w blur_6: 1079604729
-      Thunderstrike w blur_7: -1146910815
-      Thunderstrike w blur_8: -1754462215
-      Thunderstrike w blur_9: -210493024
+      Holy VFX 02_0: -1907065148
+      Holy VFX 02_1: -2119569794
+      Holy VFX 02_10: 267540156
+      Holy VFX 02_11: 1164632384
+      Holy VFX 02_12: 242383815
+      Holy VFX 02_13: 427555349
+      Holy VFX 02_14: -123622004
+      Holy VFX 02_15: -736958627
+      Holy VFX 02_2: 1002580265
+      Holy VFX 02_3: -2065922403
+      Holy VFX 02_4: 252977915
+      Holy VFX 02_5: -1397236159
+      Holy VFX 02_6: -969743970
+      Holy VFX 02_7: 1003730904
+      Holy VFX 02_8: -341989851
+      Holy VFX 02_9: -1428120584
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

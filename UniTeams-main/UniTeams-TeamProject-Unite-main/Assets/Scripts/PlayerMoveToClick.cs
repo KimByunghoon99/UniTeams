@@ -10,7 +10,7 @@ public class PlayerMoveToClick : MonoBehaviour
     bool isSlow = false;
 
     [SerializeField]
-    float playerHP = 300;
+    public float playerHP = 300;
 
     [SerializeField]
     bool playerIsDead = false;

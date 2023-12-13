@@ -5,75 +5,85 @@ using UnityEngine;
 public class RangeIndicator : MonoBehaviour
 {
     public GameObject Player;
-    public GameObject crosshairPrefab, circlePrefab, rifleIconPrefab, shotgunIconPrefab, sniperIconPrefab, missileIconPrefab, lightningIconPrefab, kunaiIconPrefab, dartIconPrefab, shieldIconPrefab, knifeIconPrefab, tornadoIconPrefab;
+    public GameObject crosshairPrefab, circlePrefab, rifleIconPrefab, shotgunIconPrefab, sniperIconPrefab, missileIconPrefab, lightningIconPrefab, kunaiIconPrefab, dartIconPrefab, shieldIconPrefab, knifeIconPrefab, tornadoIconPrefab, healIconPrefab, targetLightningIconPrefab;   
     public GameObject TornadoPrefab;
     public GameObject CoolTimePrefab;
-    private GameObject crosshairInstance, circleInstance, baseAttackIconInstance, iconInstance, mouseCircleInstance, CoolTimeInstance;
+    private GameObject crosshairInstance, circleInstance, baseAttackIconInstance, iconInstance, mouseCircleInstance, CoolTimeInstance, BaseAttackCoolTimeInstance;
 
     public float iconHeight = 1.1f;
     private float followRange = 0f;
-    private float CoolTime;
     Quaternion iconRotation = Quaternion.Euler(0f, 0f, 45f);
 
-    private Vector3 IconPos;
+    private Vector3 IconPos, BaseAttackIconPos;
 
     void Update()
     {
         UpdateRangePosition();
-
-        if (Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0))
         {
             HideRangeIndicator();
         }
+
     }
     public void setRangeType(int skillReady)
     {
-        if (iconInstance == null && baseAttackIconInstance == null && CoolTimeInstance == null)
+        if (iconInstance != null)
         {
-            switch (skillReady)
-            {
-                case 1:
-                    baseAttackIconInstance = Instantiate(rifleIconPrefab, IconPos, iconRotation);
-                    break;
-                case 2:
-                    baseAttackIconInstance = Instantiate(shotgunIconPrefab, IconPos, iconRotation);
-                    break;
-                case 3:
-                    baseAttackIconInstance = Instantiate(sniperIconPrefab, IconPos, iconRotation);
-                    break;
-                case 4: //미사일
-                    ShowMissileRange();
-                    iconInstance = Instantiate(missileIconPrefab, IconPos, iconRotation);
-                    break;
-                case 5: //번개
-                    ShowLightningRange();
-                    iconInstance = Instantiate(lightningIconPrefab, IconPos, Quaternion.identity);
-                    break;
-                case 6:
-                    iconInstance = Instantiate(shieldIconPrefab, IconPos, Quaternion.identity);
-                    break;
-                case 7:
-                    iconInstance = Instantiate(kunaiIconPrefab, IconPos, iconRotation);
-                    break;
-                case 8:
-                    iconInstance = Instantiate(dartIconPrefab, IconPos, Quaternion.identity);
-                    break;
-                case 9:
-                    iconInstance = Instantiate(knifeIconPrefab, IconPos, Quaternion.identity);
-                    break;
-                case 10:
-                    ShowTornadoRange();
-                    iconInstance = Instantiate(tornadoIconPrefab, IconPos, Quaternion.identity);
-                    break;
-            }
+            Destroy(iconInstance);
         }
-        
+        else if (CoolTimeInstance != null)
+        {
+            Destroy(CoolTimeInstance);
+        }
+        switch (skillReady)
+        {
+            case 1:
+                baseAttackIconInstance = Instantiate(rifleIconPrefab, BaseAttackIconPos, iconRotation);
+                break;
+            case 2:
+                baseAttackIconInstance = Instantiate(shotgunIconPrefab, BaseAttackIconPos, iconRotation);
+                break;
+            case 3:
+                baseAttackIconInstance = Instantiate(sniperIconPrefab, BaseAttackIconPos, iconRotation);
+                break;
+            case 4: //미사일
+                ShowMissileRange();
+                iconInstance = Instantiate(missileIconPrefab, IconPos, iconRotation);
+                break;
+            case 5: //번개
+                ShowLightningRange();
+                iconInstance = Instantiate(lightningIconPrefab, IconPos, Quaternion.identity);
+                break;
+            case 6:
+                iconInstance = Instantiate(shieldIconPrefab, IconPos, Quaternion.identity);
+                break;
+            case 7:
+                iconInstance = Instantiate(kunaiIconPrefab, IconPos, iconRotation);
+                break;
+            case 8:
+                iconInstance = Instantiate(dartIconPrefab, IconPos, Quaternion.identity);
+                break;
+            case 9:
+                iconInstance = Instantiate(knifeIconPrefab, IconPos, Quaternion.identity);
+                break;
+            case 10:
+                ShowTornadoRange();
+                iconInstance = Instantiate(tornadoIconPrefab, IconPos, Quaternion.identity);
+                break;
+            case 11:
+                iconInstance = Instantiate(healIconPrefab, IconPos, Quaternion.identity);
+                break;
+            case 12:
+                iconInstance = Instantiate(targetLightningIconPrefab, IconPos, Quaternion.identity);
+                break;
+        }
     }
 
     void UpdateRangePosition()
     {
         Vector3 playerPos = Player.transform.position;
         IconPos = new Vector3(playerPos.x, playerPos.y + iconHeight, playerPos.z);
+        BaseAttackIconPos = new Vector3(playerPos.x + iconHeight, playerPos.y, playerPos.z);
         if (crosshairInstance != null)
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -90,7 +100,7 @@ public class RangeIndicator : MonoBehaviour
         }
         if (baseAttackIconInstance != null)
         {
-            baseAttackIconInstance.transform.position = IconPos;
+            baseAttackIconInstance.transform.position = BaseAttackIconPos;
         }
         if (mouseCircleInstance != null)
         {
@@ -102,15 +112,31 @@ public class RangeIndicator : MonoBehaviour
         {
             CoolTimeInstance.transform.position = IconPos;
         }
+        if(BaseAttackCoolTimeInstance != null)
+        {
+            BaseAttackCoolTimeInstance.transform.position = BaseAttackIconPos;
+        }
     }
     public void ShowCoolTime(float CoolTime)
     {
-        if (CoolTimeInstance == null && baseAttackIconInstance == null)
+        if (CoolTimeInstance != null)
         {
-            CoolTimeInstance = Instantiate(CoolTimePrefab, IconPos, Quaternion.identity);
-            Destroy(CoolTimeInstance, CoolTime);
+            Destroy(CoolTimeInstance);
         }
+        CoolTimeInstance = Instantiate(CoolTimePrefab, IconPos, Quaternion.identity);
+        Destroy(CoolTimeInstance, CoolTime);
     }
+
+    public void BaseAttackShowCoolTime(float CoolTime)
+    {
+        if (BaseAttackCoolTimeInstance != null)
+        {
+            Destroy(BaseAttackCoolTimeInstance);
+        }
+        BaseAttackCoolTimeInstance = Instantiate(CoolTimePrefab, BaseAttackIconPos, Quaternion.identity);
+        Destroy(BaseAttackCoolTimeInstance, CoolTime);
+    }
+
 
 
     void ShowMissileRange()
@@ -160,8 +186,6 @@ public class RangeIndicator : MonoBehaviour
         {
             Destroy(mouseCircleInstance);
         }
-        if(CoolTimeInstance != null)
-            Destroy(CoolTimeInstance);
         Destroy(iconInstance);
 
     }

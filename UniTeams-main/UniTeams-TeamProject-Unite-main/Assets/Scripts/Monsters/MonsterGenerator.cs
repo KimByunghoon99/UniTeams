@@ -45,7 +45,7 @@ public class MonsterGenerator : MonoBehaviour
             {
                 monster.transform.position = GetRandomPosition();
                 monster.SetActive(true);
-                monster.GetComponent<FirstMonster>().monsterState = FirstMonster.MonsterState.Chase;
+                //monster.GetComponent<FirstMonster>().monsterState = FirstMonster.MonsterState.Chase;
                 break;
             }
         }
