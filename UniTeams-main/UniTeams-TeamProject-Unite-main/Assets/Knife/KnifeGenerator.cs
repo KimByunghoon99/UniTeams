@@ -14,8 +14,8 @@ public class KnifeGenerator : MonoBehaviour
     public float timeBetweenShots3 = 1f; //스킬 3번 재발사 속도
     public float skillDuration = 5f;
     public float detectionRadius = 5f; // 주변 적을 탐지할 반경
-    public LayerMask enemyLayer; //적을 탐지할 레이어
     private Transform playerTransform;
+    private Transform targetEnemy;
 
     void Start()
     {
@@ -77,43 +77,41 @@ public class KnifeGenerator : MonoBehaviour
         {
             playerPos = playerTransform.position;
 
-            // 주위의 적을 찾아서 가장 가까운 적을 향해 단검을 생성하는 로직
-            Collider2D[] enemies = Physics2D.OverlapCircleAll(playerPos, detectionRadius, enemyLayer); // 적을 탐지하는 코드, detectionRadius와 enemyLayer는 적의 감지 범위와 레이어에 맞게 설정해야 합니다.
-
-            if (enemies.Length > 0)
+            FindClosestEnemy(playerPos);
+            if (targetEnemy != null)
             {
-                Transform closestEnemy = FindClosestEnemy(playerPos, enemies);
-                if (closestEnemy != null)
-                {
-                    Vector2 enemyDirection = (closestEnemy.position - playerPos).normalized;
-                    Quaternion enemyRotation = Quaternion.LookRotation(Vector3.forward, enemyDirection);
-                    Instantiate(KnifePrefab2, playerPos, enemyRotation);
-                }
+                Vector2 enemyDirection = (targetEnemy.position - playerPos).normalized;
+                Quaternion enemyRotation = Quaternion.LookRotation(Vector3.forward, enemyDirection);
+                Instantiate(KnifePrefab2, playerPos, enemyRotation);
             }
 
             yield return new WaitForSeconds(timeBetweenShots3);
             elapsedTime += timeBetweenShots3;
-        }
+        }        
+    }
+    private void FindClosestEnemy(Vector3 playerPos)
+    {
+        // 특정 반경 내에서 Enemy 태그를 가진 적 찾기
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(playerPos, detectionRadius);
 
-        Transform FindClosestEnemy(Vector3 playerPos, Collider2D[] enemies)
+        if (colliders.Length > 0)
         {
-            Transform closestEnemy = null;
+            // 가장 가까운 적 찾기
             float closestDistance = float.MaxValue;
 
-            foreach (var enemyCollider in enemies)
+            foreach (Collider2D collider in colliders)
             {
-                float distance = Vector3.Distance(playerPos, enemyCollider.transform.position);
-
-                if (distance < closestDistance)
+                if (collider.CompareTag("Enemy") || collider.CompareTag("Monster"))
                 {
-                    closestDistance = distance;
-                    closestEnemy = enemyCollider.transform;
+                    float distance = Vector3.Distance(transform.position, collider.transform.position);
+                    if (distance < closestDistance)
+                    {
+                        closestDistance = distance;
+                        targetEnemy = collider.transform;
+                    }
                 }
             }
-
-            return closestEnemy;
         }
     }
-
 
 }

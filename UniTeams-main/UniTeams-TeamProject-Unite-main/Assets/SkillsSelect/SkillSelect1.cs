@@ -52,8 +52,31 @@ public class SkillSelect1 : MonoBehaviour
     // 버튼 클릭 시 호출되는 함수
     public void OnSkillButtonClick(int buttonIndex)
     {
-        //버튼 인덱스는 각 버튼에 onclick으로 지정 정수를 반환
+        GameObject Player = GameObject.FindWithTag("Player");
         Debug.Log("Clicked Button Index: " + buttonIndex);
+        switch (buttonIndex)
+        {
+            case 1:
+            case 2:
+            case 3:
+                Player.GetComponent<PlayerSkill>().QskillReady = buttonIndex;
+                break;
+            case 4:
+            case 5:
+            case 6:
+                Player.GetComponent<PlayerSkill>().WskillReady = buttonIndex;
+                break;
+            case 7:
+            case 8:
+            case 9:
+                Player.GetComponent<PlayerSkill>().EskillReady = buttonIndex;
+                break;
+            case 10:
+            case 11:
+            case 12:
+                Player.GetComponent<PlayerSkill>().RskillReady = buttonIndex;
+                break;
+        }
         HideButtons();
     }
 }

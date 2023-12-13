@@ -14,7 +14,6 @@ public class PlayerSkill : MonoBehaviour
     public GameObject TargetLightningPrefab;
     Vector3 mousePos, transPos, targetPos;
     Vector2 direction;
-    public string enemyTag = "Enemy";
     public int attackRange = 10;
     public float ShieldSpan = 5f;
     public float HealAmount = 100f;
@@ -55,8 +54,8 @@ public class PlayerSkill : MonoBehaviour
     }
     void CalEnemyDirection()
     {
-        direction = targetEnemy.position - transform.position;
-
+        if(targetEnemy != null) 
+            direction = targetEnemy.position - transform.position;
     }
     // Update is called once per frame
     void Update()
@@ -274,7 +273,7 @@ public class PlayerSkill : MonoBehaviour
         // 가져온 콜라이더들을 순회하면서 Enemy 태그를 가진 물체가 있는지 확인
         foreach (Collider2D collider in colliders)
         {
-            if (collider.CompareTag(enemyTag))
+            if (collider.CompareTag("Enemy") || collider.CompareTag("Monster"))
             {
                 // Enemy 태그를 가진 물체가 있으면 true 반환
                 return true;

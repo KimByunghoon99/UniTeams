@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8334568006132963783}
   - component: {fileID: 3860007604513876502}
   m_Layer: 0
-  m_Name: Thunderstrike w blur_0
+  m_Name: TargetLightningPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

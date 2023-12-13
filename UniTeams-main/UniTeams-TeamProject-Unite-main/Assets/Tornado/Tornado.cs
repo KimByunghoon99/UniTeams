@@ -77,7 +77,7 @@ public class Tornado : MonoBehaviour
 
             foreach (Collider2D collider in colliders)
             {
-                if (collider.CompareTag("Enemy"))
+                if (collider.CompareTag("Enemy") || collider.CompareTag("Monster"))
                 {
                     float distance = Vector3.Distance(transform.position, collider.transform.position);
                     if (distance < closestDistance)
@@ -93,7 +93,7 @@ public class Tornado : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy"|| collision.gameObject.tag == "Monster")
         {
             gameObject.layer = LayerMask.NameToLayer("NoCollision");
             Invoke("ResetLayer", attackInterval);

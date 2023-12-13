@@ -20,7 +20,7 @@ public class LightningGenerator : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, skillRange);
         foreach (var collider in colliders)
         {
-            if (collider.CompareTag("Enemy"))
+            if (collider.CompareTag("Enemy") || collider.CompareTag("Monster"))
             {
                 nearbyMonsters.Add(collider.transform);
             }
