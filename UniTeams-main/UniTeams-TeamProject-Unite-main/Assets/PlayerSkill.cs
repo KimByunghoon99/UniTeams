@@ -167,6 +167,8 @@ public class PlayerSkill : MonoBehaviour
 
                 case 6:
                     GameObject Shield = Instantiate(ShieldPrefab);
+                    gameObject.layer = LayerMask.NameToLayer("NoCollision");
+                    Invoke("ResetLayer", ShieldSpan);
                     Destroy(Shield, ShieldSpan);
                     WReadyTime = Time.time + WCoolTime;
                     break;
@@ -306,5 +308,10 @@ public class PlayerSkill : MonoBehaviour
                 }
             }
         }
+    }
+    void ResetLayer()
+    {
+        // 충돌 가능해지면 다시 원래의 Layer로 변경
+        gameObject.layer = LayerMask.NameToLayer("Default");
     }
 }

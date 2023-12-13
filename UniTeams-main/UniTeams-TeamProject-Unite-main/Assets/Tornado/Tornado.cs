@@ -95,7 +95,6 @@ public class Tornado : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            Debug.Log("Ãæµ¹");
             gameObject.layer = LayerMask.NameToLayer("NoCollision");
             Invoke("ResetLayer", attackInterval);
         }
