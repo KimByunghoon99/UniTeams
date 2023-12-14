@@ -2,33 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class OpeningText : MonoBehaviour
+public class EndingText : MonoBehaviour
 {
     public TextMeshProUGUI TextTMP;
     public GameObject UIimage;
-    public GameObject startBack;
-    public GameObject howToPlay;
+    public GameObject endBack;
     public GameObject background1;
     public GameObject background2;
     public GameObject background3;
     public GameObject background4;
-    public int isOpeningFinish = 0;
+    public GameObject endingCredit;
     int index = 0;
     public string[] dialogue = {
         "대사1.",
         "대사2.",
         "대사3.",
         "대사4.",
-        "대사5."
+        "대사5.",
+        "끝"
     };
 
     // Start is called before the first frame update
     void Start()
     {
-        TextTMP.text = "GAME START";
-        UIimage.SetActive(false);
+        TextTMP.text = "10년 전 널 살려둔 실수가 결국 내 발목을 붙잡는구나...";
     }
 
     // Update is called once per frame
@@ -36,19 +34,12 @@ public class OpeningText : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (isOpeningFinish == 1)
-            {
-                // SceneManager.LoadScene("GameScene");
-            }
             TextTMP.text = dialogue[index];
             UIimage.SetActive(true);
             switch (index)
             {
-                case 0:
-                    startBack.SetActive(false);
-                    break;
                 case 1:
-                    howToPlay.SetActive(false);
+                    endBack.SetActive(false);
                     break;
                 case 2:
                     background1.SetActive(false);
@@ -61,18 +52,13 @@ public class OpeningText : MonoBehaviour
                     break;
                 case 5:
                     background4.SetActive(false);
+                    UIimage.SetActive(false);
                     break;
 
             }
 
-            if (index < 4)
+            if (index < 5)
                 index++;
-            else
-            {
-                isOpeningFinish = 1;
-
-            }
-
         }
 
     }

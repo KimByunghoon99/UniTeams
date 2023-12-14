@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class MiddleBossMonster : MonoBehaviour, Monster
+public class FinalBossMonster : MonoBehaviour, Monster
 {
     public enum MonsterState
     {
@@ -11,15 +11,17 @@ public class MiddleBossMonster : MonoBehaviour, Monster
         Dead
     }
 
-    protected int hp = 500;
+    protected int hp = 1500;
 
     [SerializeField]
-    protected float speed = 4.5f;
+    protected float speed = 5.5f;
 
     [SerializeField]
-    protected int attackConstant = 2000;
+    protected bool isAttacking = false;
+    public GameObject questManager;
 
-    protected float attackRange = 9f;
+    public CapsuleCollider2D colliderRight;
+    public CapsuleCollider2D colliderLeft;
     protected float chaseRange = 13f;
     protected float patrolRange = 5f;
     public MonsterState monsterState;
@@ -35,6 +37,8 @@ public class MiddleBossMonster : MonoBehaviour, Monster
 
     void Start()
     {
+        questManager = GameObject.FindWithTag("Quest");
+        player = GameObject.FindWithTag("Player");
         monsterState = MonsterState.Patrol;
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -52,18 +56,6 @@ public class MiddleBossMonster : MonoBehaviour, Monster
                 break;
             case MonsterState.Attack:
                 Attack();
-                if (attackTimer > attackConstant)
-                {
-                    DelegateAttack();
-                    Invoke("DelegateAttack", 0.5f);
-                    Invoke("DelegateAttack", 1f);
-                    attackTimer = 0;
-                }
-                else
-                {
-                    attackTimer++;
-                }
-
                 break;
             case MonsterState.Chase:
                 Chase();
@@ -71,11 +63,30 @@ public class MiddleBossMonster : MonoBehaviour, Monster
             case MonsterState.Dead:
                 break;
         }
+
+        if (speed > 5)
+        {
+            speed *= 0.97f;
+        }
+        else
+        {
+            speed *= 1.03f;
+        }
     }
 
     void FixedUpdate()
     {
         spriteRenderer.flipX = targetPosition.x < rigidbody2D.position.x;
+        if (!spriteRenderer.flipX)
+        {
+            colliderRight.enabled = true;
+            colliderLeft.enabled = false;
+        }
+        else
+        {
+            colliderRight.enabled = false;
+            colliderLeft.enabled = true;
+        }
     }
 
     void Patrol()
@@ -116,13 +127,7 @@ public class MiddleBossMonster : MonoBehaviour, Monster
         // Check the distance to the player
         float distanceToPlayer = Vector2.Distance(transform.position, targetPosition);
 
-        if (distanceToPlayer < attackRange)
-        {
-            // If the player is within the attack range, start attacking
-            monsterState = MonsterState.Attack;
-            anim.SetBool("isAttack", true);
-        }
-        else if (distanceToPlayer > chaseRange)
+        if (distanceToPlayer > chaseRange)
         {
             // If the player is outside the chase range, go back to patrolling
             monsterState = MonsterState.Patrol;
@@ -132,63 +137,45 @@ public class MiddleBossMonster : MonoBehaviour, Monster
 
     void Attack()
     {
-        Vector2 playerPosition = player.transform.position;
-        float distanceToPlayer = Vector2.Distance(transform.position, playerPosition);
-
-        if (distanceToPlayer > attackRange)
+        if (!isAttacking)
         {
-            monsterState = MonsterState.Chase;
-            anim.SetBool("isAttack", false);
-            StartCoroutine(UpdatePatrolTarget());
+            anim.Play("Melee");
+            isAttacking = true;
         }
     }
 
-    // void DelegateAttack()
-    // {
-    //     Vector3 playerPosition = player.transform.position;
-    //     Vector3 dir = playerPosition - this.transform.position;
-    //     dir = dir.normalized;
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            monsterState = MonsterState.Attack;
+            anim.SetBool("isAttacking", true);
+        }
+    }
 
-    //     GameObject bullet = Instantiate(bulletPrefab, this.transform);
-    //     if (bullet != null)
+    // void OnTriggerStay2D(Collider2D other)
+    // {
+    //     if (other.CompareTag("Player"))
     //     {
-    //         bullet.GetComponent<Transform>().position = transform.position;
-    //         bullet.GetComponent<Transform>().rotation = Quaternion.FromToRotation(Vector3.up, dir);
-    //         bullet.GetComponent<Transform>().rotation *= Quaternion.Euler(0, 0, 270);
-    //         bullet.GetComponent<Bullet>().Fire(dir);
+
     //     }
     // }
 
-    void DelegateAttack()
+    void OnTriggerExit2D(Collider2D other)
     {
-        if (monsterState != MonsterState.Attack)
-            return;
-
-        Vector3 playerPosition = player.transform.position;
-        Vector3 dir = playerPosition - transform.position;
-        dir = dir.normalized;
-        GameObject bullet;
-
-        // 8개의 탄환을 발사
-        for (int i = 0; i < 8; i++)
+        if (other.CompareTag("Player"))
         {
-            // 현재 방향에 대한 회전 각도 계산
-            float angle = i * 45f;
-
-            // 회전 적용
-            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            Vector3 rotatedDir = rotation * dir;
-
-            // 탄환 생성 및 초기화
-            bullet = Instantiate(bulletPrefab);
-            if (bullet != null)
-            {
-                bullet.GetComponent<Transform>().position = transform.position;
-                bullet.GetComponent<Transform>().rotation = Quaternion.Euler(rotatedDir);
-                bullet.GetComponent<Transform>().rotation *= Quaternion.Euler(0, 0, 135);
-                bullet.GetComponent<BulletEnemyAccel>().Fire(rotatedDir);
-            }
+            anim.SetBool("isAttacking", false);
+            monsterState = MonsterState.Patrol;
         }
+    }
+
+    void Summon() { }
+
+    void returnAttack()
+    {
+        Debug.Log("return attack");
+        isAttacking = false;
     }
 
     IEnumerator UpdatePatrolTarget()
@@ -212,11 +199,12 @@ public class MiddleBossMonster : MonoBehaviour, Monster
 
     public void OnHit(int damage)
     {
-        Debug.Log("1번째 보스 사망");
         hp -= damage;
 
         if (hp <= 0)
             Die();
+
+        return;
     }
 
     void Die()

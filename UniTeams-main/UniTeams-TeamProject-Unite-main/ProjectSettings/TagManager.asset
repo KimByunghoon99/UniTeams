@@ -9,6 +9,7 @@ TagManager:
   - MonsterBullet
   - Quest
   - Weapon
+  - FinalBoss
   layers:
   - Default
   - TransparentFX

@@ -2,9 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMoveToClick : MonoBehaviour
 {
+    public Slider HealthBar;
+
     [SerializeField]
     float speed = 5f;
     bool isSlow = false;
@@ -99,6 +102,22 @@ public class PlayerMoveToClick : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (this.playerHP <= 0)
+        {
+            animator.SetTrigger("dead");
+            this.playerIsDead = true;
+        }
+        if (this.playerIsDead == false)
+        {
+            if (collision.gameObject.tag == "Monster")
+            {
+                this.playerHP = this.playerHP - Time.deltaTime * 30;
+            }
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -119,5 +138,6 @@ public class PlayerMoveToClick : MonoBehaviour
                 animator.SetBool("iswalk", false);
             }
         }
+        HealthBar.value = this.playerHP;
     }
 }
