@@ -12,21 +12,20 @@ public class SecondGenerator : MonoBehaviour
     private List<GameObject> monsterPool;
     private float nextSpawnTime;
 
-    private void Start()
-    {
-        CreatePool();
-    }
 
-    private void Update()
+    void Update()
     {
-        if (Time.time > nextSpawnTime)
+        if(monsterPool != null)
         {
-            SpawnMonster();
-            nextSpawnTime = Time.time + spawnRate;
+            if (Time.time > nextSpawnTime)
+            {
+                SpawnMonster();
+                nextSpawnTime = Time.time + spawnRate;
+            }
         }
     }
 
-    void CreatePool()
+    public void CreatePool()
     {
         monsterPool = new List<GameObject>();
         for (int i = 0; i < poolSize; i++)
@@ -37,17 +36,13 @@ public class SecondGenerator : MonoBehaviour
         }
     }
 
-    void SpawnMonster()
+    public void SpawnMonster()
     {
         foreach (GameObject monster in monsterPool)
         {
-            if (!monster.activeInHierarchy)
-            {
-                monster.transform.position = GetRandomPosition();
-                monster.SetActive(true);
-                monster.GetComponent<SecondMonster>().hp = 100;
-                break;
-            }
+            monster.transform.position = GetRandomPosition();
+            monster.SetActive(true);
+            monster.GetComponent<SecondMonster>().hp = 100;
         }
     }
 

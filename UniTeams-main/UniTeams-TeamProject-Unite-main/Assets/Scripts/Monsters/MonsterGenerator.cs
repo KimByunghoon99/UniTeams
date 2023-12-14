@@ -39,17 +39,20 @@ public class MonsterGenerator : MonoBehaviour
 
     void SpawnMonster()
     {
-        foreach (GameObject monster in monsterPool)
+        if (monsterPool != null)
         {
-            if (!monster.activeInHierarchy)
+            foreach (GameObject monster in monsterPool)
             {
-                monster.transform.position = GetRandomPosition();
-                monster.SetActive(true);
-                monster.GetComponent<FirstMonster>().hp = 80;
-                monster.GetComponent<FirstMonster>().monsterState = FirstMonster.MonsterState.Chase;
-                break;
+                if (!monster.activeInHierarchy)
+                {
+                    monster.transform.position = GetRandomPosition();
+                    monster.SetActive(true);
+                    monster.GetComponent<FirstMonster>().hp = 80;
+                    monster.GetComponent<FirstMonster>().monsterState = FirstMonster.MonsterState.Chase;
+                    break;
+                }
             }
-        }
+        }     
     }
 
     Vector3 GetRandomPosition()

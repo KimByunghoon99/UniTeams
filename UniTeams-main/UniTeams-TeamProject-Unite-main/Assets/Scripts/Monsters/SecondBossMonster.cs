@@ -26,6 +26,7 @@ public class SecondBossMonster : MonoBehaviour
     public MonsterState monsterState;
     public GameObject player;
     public GameObject bulletPrefab;
+    public GameObject questManager;
     protected SpriteRenderer spriteRenderer;
 
     protected new Rigidbody2D rigidbody2D;
@@ -38,6 +39,8 @@ public class SecondBossMonster : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         monsterState = MonsterState.Patrol;
+        questManager = GameObject.FindWithTag("Quest");
+
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -187,25 +190,23 @@ public class SecondBossMonster : MonoBehaviour
         }
     }
 
-    public void OnHit(int weaponTag)
+    public void OnHit(int damage)
     {
-        switch (weaponTag)
+        hp -= damage;
+
+        if (hp <= 0)
         {
-            case 1:
-                Debug.Log("몬스터 공격받음 처리");
-                hp -= 35;
-
-                if (hp <= 0)
-                    Die();
-
-                return;
+            Debug.Log("2번째 보스 사망");
+            Die();
         }
     }
 
     void Die()
     {
-        // 죽을 때 애니메이션 처리도 나중에 추가
-
+        if (questManager.GetComponent<QuestManager>().MiddleBoss2MonsterKill != -1)
+        {
+            questManager.GetComponent<QuestManager>().MiddleBoss2MonsterKill++;
+        }
         monsterState = MonsterState.Dead;
         Destroy(gameObject);
     }

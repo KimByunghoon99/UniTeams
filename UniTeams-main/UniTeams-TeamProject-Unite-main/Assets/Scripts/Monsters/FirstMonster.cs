@@ -18,7 +18,7 @@ public class FirstMonster : MonoBehaviour, Monster
     [SerializeField]
     protected int attckConstant = 250;
 
-    protected float chaseRange = 7f;
+    protected float chaseRange = 14f;
     protected float patrolRange = 4f;
     public MonsterState monsterState;
     public GameObject player;

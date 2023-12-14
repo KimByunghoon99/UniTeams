@@ -122,7 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 100
   lifetime: 5
-  BulletSpeed: 15
+  BulletSpeed: 17
   MaxHit: 7
 --- !u!61 &2568436683304869183
 BoxCollider2D:

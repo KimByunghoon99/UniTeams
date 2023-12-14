@@ -12,6 +12,7 @@ public class QuestManager : MonoBehaviour
     public GameObject Q2txt;
     public GameObject Q3txt;
     public GameObject Q4txt;
+    public GameObject Q5txt;
 
     public GameObject skillsel1;
     public GameObject skillsel2;
@@ -30,6 +31,7 @@ public class QuestManager : MonoBehaviour
             FirstMonsterKill = -1;
             Debug.Log("10마리 처치 완료");
             skillsel1.GetComponent<SkillSelect1>().ShowButtons();
+            DestroyAllMonsters();
             Q1txt.SetActive(false);
             Q2txt.SetActive(true);
         }
@@ -39,7 +41,6 @@ public class QuestManager : MonoBehaviour
             Debug.Log("중간보스 처치 완료");
             skillsel2.GetComponent<SkillSelect1>().ShowButtons();
             wall1.SetActive(false);
-
             Q2txt.SetActive(false);
             Q3txt.SetActive(true);
         }
@@ -47,6 +48,7 @@ public class QuestManager : MonoBehaviour
         {
             SecondMonsterKill = -1;
             Debug.Log("15마리 처치 완료");
+            DestroyAllMonsters();
             skillsel3.GetComponent<SkillSelect1>().ShowButtons();
             Q3txt.SetActive(false);
             Q4txt.SetActive(true);
@@ -57,9 +59,17 @@ public class QuestManager : MonoBehaviour
             Debug.Log("중간보스 처치 완료");
             skillsel4.GetComponent<SkillSelect1>().ShowButtons();
             wall2.SetActive(false);
+            Q4txt.SetActive(false);
+            Q5txt.SetActive(true);
+        }
+    }
+    void DestroyAllMonsters()
+    {
+        GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monster");
 
-            Q2txt.SetActive(false);
-            Q3txt.SetActive(true);
+        foreach (GameObject monster in monsters)
+        {
+            Destroy(monster);
         }
     }
 }

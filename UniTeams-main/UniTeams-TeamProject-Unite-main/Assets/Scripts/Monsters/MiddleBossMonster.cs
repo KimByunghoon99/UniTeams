@@ -46,16 +46,10 @@ public class MiddleBossMonster : MonoBehaviour, Monster
         anim = GetComponent<Animator>();
 
         StartCoroutine(UpdatePatrolTarget());
-        middleboss.SetActive(false);
     }
 
     void Update()
     {
-        if (FirstMonsterKill >= 10)
-        { 
-            middleboss.SetActive(true);
-        }
-
         switch (monsterState)
         {
             case MonsterState.Patrol:
@@ -234,7 +228,10 @@ public class MiddleBossMonster : MonoBehaviour, Monster
 
     void Die()
     {
-        // 죽을 때 애니메이션 처리도 나중에 추가
+        if (questManager.GetComponent<QuestManager>().MiddleBoss1MonsterKill != -1)
+        {
+            questManager.GetComponent<QuestManager>().MiddleBoss1MonsterKill++;
+        }
         monsterState = MonsterState.Dead;
         Destroy(gameObject);
     }
