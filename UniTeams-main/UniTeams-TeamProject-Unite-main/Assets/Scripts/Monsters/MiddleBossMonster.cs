@@ -212,11 +212,13 @@ public class MiddleBossMonster : MonoBehaviour, Monster
 
     public void OnHit(int damage)
     {
-        Debug.Log("1번째 보스 사망");
         hp -= damage;
 
         if (hp <= 0)
+        {
+            Debug.Log("1번째 보스 사망");
             Die();
+        }
     }
 
     void Die()
