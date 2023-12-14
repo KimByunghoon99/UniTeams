@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Knife : MonoBehaviour
 {
-    public float damage;
+    public int damage;
     public float lifetime = 5f;
     public float KnifeSpeed = 5f;
 
@@ -29,7 +29,7 @@ public class Knife : MonoBehaviour
         {
             if (!collision.isActiveAndEnabled)
                 return;
-            collision.GetComponent<Monster>().OnHit(15);
+            collision.GetComponent<Monster>().OnHit(damage);
             DestroyKnife();
         }
     }

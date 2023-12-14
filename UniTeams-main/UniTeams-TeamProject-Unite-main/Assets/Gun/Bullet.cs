@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float damage;
+    public int damage;
     public float lifetime = 5f;
     public float BulletSpeed = 5f;
 
@@ -29,7 +29,7 @@ public class Bullet : MonoBehaviour
         {
             if (!collision.isActiveAndEnabled)
                 return;
-            collision.GetComponent<Monster>().OnHit(10);
+            collision.GetComponent<Monster>().OnHit(damage);
             DestroyBullet();
         }
     }

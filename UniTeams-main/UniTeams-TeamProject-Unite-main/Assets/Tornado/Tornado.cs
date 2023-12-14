@@ -5,7 +5,7 @@ using UnityEngine;
 public class Tornado : MonoBehaviour
 {
     // ����̵��� ������, ���ӽð�, ���� ����, ���󰡴� �ӵ� ����
-    public float damage = 10f;
+    public int damage = 10;
     public float duration = 20f;
     public float attackInterval = 1f;
     public float followSpeed = 5f;
@@ -98,6 +98,7 @@ public class Tornado : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Monster")
         {
+            collision.GetComponent<Monster>().OnHit(damage);
             gameObject.layer = LayerMask.NameToLayer("NoCollision");
             Invoke("ResetLayer", attackInterval);
         }

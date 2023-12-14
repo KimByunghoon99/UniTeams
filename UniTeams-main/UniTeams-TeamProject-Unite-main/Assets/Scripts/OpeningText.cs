@@ -38,7 +38,7 @@ public class OpeningText : MonoBehaviour
         {
             if (isOpeningFinish == 1)
             {
-                // SceneManager.LoadScene("GameScene");
+                SceneManager.LoadScene("GameScene");
             }
             TextTMP.text = dialogue[index];
             UIimage.SetActive(true);

@@ -11,9 +11,9 @@ public class KnifeGenerator : MonoBehaviour
     public int numberOfShots = 7; //스킬 1번 단검 날라가는 갯수
     public int numberOfShots1 = 10; // 스킬 2번 부채꼴 모양으로 나가는 총알 개수
     public float fanSpreadAngle = 15f; // 부채꼴의 각도
-    public float timeBetweenShots3 = 1f; //스킬 3번 재발사 속도
+    public float timeBetweenShots3 = 0.25f; //스킬 3번 재발사 속도
     public float skillDuration = 5f;
-    public float detectionRadius = 5f; // 주변 적을 탐지할 반경
+    public float detectionRadius = 7f; // 주변 적을 탐지할 반경
     private Transform playerTransform;
     private Transform targetEnemy;
 
