@@ -36,6 +36,7 @@ public class SecondBossMonster : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
         monsterState = MonsterState.Patrol;
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigidbody2D = GetComponent<Rigidbody2D>();

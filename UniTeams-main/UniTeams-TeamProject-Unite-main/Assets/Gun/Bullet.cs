@@ -29,7 +29,12 @@ public class Bullet : MonoBehaviour
         {
             if (!collision.isActiveAndEnabled)
                 return;
-            collision.GetComponent<Monster>().OnHit(damage);
+
+            Monster monsterComponent = collision.GetComponent<Monster>();
+            if (monsterComponent != null)
+            {
+                monsterComponent.OnHit(damage);
+            }
             DestroyBullet();
         }
     }

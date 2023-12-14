@@ -23,8 +23,11 @@ public class MiddleBossMonster : MonoBehaviour, Monster
     protected float chaseRange = 13f;
     protected float patrolRange = 5f;
     public MonsterState monsterState;
+    public int FirstMonsterKill = 0;
     public GameObject player;
     public GameObject bulletPrefab;
+    public GameObject questManager;
+    public GameObject middleboss;
     protected SpriteRenderer spriteRenderer;
 
     protected new Rigidbody2D rigidbody2D;
@@ -35,16 +38,24 @@ public class MiddleBossMonster : MonoBehaviour, Monster
 
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
+        questManager = GameObject.FindWithTag("Quest");
         monsterState = MonsterState.Patrol;
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
         StartCoroutine(UpdatePatrolTarget());
+        middleboss.SetActive(false);
     }
 
     void Update()
     {
+        if (FirstMonsterKill >= 10)
+        { 
+            middleboss.SetActive(true);
+        }
+
         switch (monsterState)
         {
             case MonsterState.Patrol:
@@ -218,13 +229,12 @@ public class MiddleBossMonster : MonoBehaviour, Monster
         {
             Debug.Log("1번째 보스 사망");
             Die();
-        }
+        }      
     }
 
     void Die()
     {
         // 죽을 때 애니메이션 처리도 나중에 추가
-
         monsterState = MonsterState.Dead;
         Destroy(gameObject);
     }
