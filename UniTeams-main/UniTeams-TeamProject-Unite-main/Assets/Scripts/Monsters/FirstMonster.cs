@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class FirstsMonster : MonoBehaviour
+public class FirstMonster : MonoBehaviour, Monster
 {
     public enum MonsterState
     {
@@ -10,10 +10,10 @@ public class FirstsMonster : MonoBehaviour
         Dead
     }
 
-    protected int hp = 80;
+    public int hp = 80;
 
     [SerializeField]
-    protected float speed = 5f;
+    protected float speed = 4f;
 
     [SerializeField]
     protected int attckConstant = 250;
@@ -32,7 +32,6 @@ public class FirstsMonster : MonoBehaviour
 
     void Start()
     {
-        Invoke("Die", 2.5f); // 테스트용 무조건 삭제해야함
         player = GameObject.FindWithTag("Player");
         questManager = GameObject.FindWithTag("Quest");
         monsterState = MonsterState.Patrol;
@@ -129,19 +128,12 @@ public class FirstsMonster : MonoBehaviour
         }
     }
 
-    public void OnHit(int weaponTag)
+    public void OnHit(int damage)
     {
-        switch (weaponTag)
-        {
-            case 1:
-                Debug.Log("몬스터 공격받음 처리");
-                hp -= 35;
+        hp -= damage;
 
-                if (hp <= 0)
-                    Die();
-
-                return;
-        }
+        if (hp <= 0)
+            Die();
     }
 
     void Die()

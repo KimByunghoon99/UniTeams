@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Knife : MonoBehaviour
 {
-
     public float damage;
     public float lifetime = 5f;
     public float KnifeSpeed = 5f;
@@ -17,8 +16,8 @@ public class Knife : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector2.up * KnifeSpeed * Time.deltaTime);
-
     }
+
     void DestroyKnife()
     {
         Destroy(gameObject);
@@ -26,8 +25,11 @@ public class Knife : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Monster")
         {
+            if (!collision.isActiveAndEnabled)
+                return;
+            collision.GetComponent<Monster>().OnHit(15);
             DestroyKnife();
         }
     }

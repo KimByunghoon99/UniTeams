@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tornado : MonoBehaviour
 {
-    // Åä³×ÀÌµµÀÇ µ¥¹ÌÁö, Áö¼Ó½Ã°£, °ø°Ý °£°Ý, µû¶ó°¡´Â ¼Óµµ º¯¼ö
+    // ï¿½ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½Ó½Ã°ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ó°¡´ï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½
     public float damage = 10f;
     public float duration = 20f;
     public float attackInterval = 1f;
@@ -17,47 +17,47 @@ public class Tornado : MonoBehaviour
 
     private void Start()
     {
-        // Animator ÄÄÆ÷³ÍÆ® °¡Á®¿À±â
+        // Animator ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         animator = GetComponent<Animator>();
-        // ½ÃÀÛ ½Ã TornadoStart ¾Ö´Ï¸ÞÀÌ¼Ç ½ÇÇà
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ TornadoStart ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
         PlayAnimation("TornadoStart");
         animator.SetBool("Enter", true);
         animator.SetBool("End", false);
 
-        // ÃÊ±â¿¡ °¡Àå °¡±î¿î Àû Ã£±â
+        // ï¿½Ê±â¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã£ï¿½ï¿½
         FindClosestEnemy();
     }
 
     private void Update()
     {
-        // °æ°ú ½Ã°£ ÃøÁ¤
+        // ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
         elapsedTime += Time.deltaTime;
 
-        // Åä³×ÀÌµµ Áö¼Ó ÁßÀÏ ¶§
+        // ï¿½ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
         if (elapsedTime < duration)
         {
-            // °¡Àå °¡±î¿î Àû µû¶ó°¡±â ¹× °ø°Ý Ã¼Å©
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ó°¡±ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¼Å©
             FollowClosestEnemy();
         }
         else
         {
-            // Áö¼Ó ½Ã°£ÀÌ ³¡³ª¸é TornadoEnd ¾Ö´Ï¸ÞÀÌ¼Ç ½ÇÇà ÈÄ ¿ÀºêÁ§Æ® ÆÄ±«
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ TornadoEnd ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ä±ï¿½
             animator.SetBool("End", true);
             animator.SetBool("Enter", false);
-            Destroy(gameObject, 1f); // "TornadoEnd" ¾Ö´Ï¸ÞÀÌ¼Ç Àç»ý ÈÄ 1ÃÊ µÚ¿¡ ¿ÀºêÁ§Æ® ÆÄ±«
+            Destroy(gameObject, 1f); // "TornadoEnd" ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ 1ï¿½ï¿½ ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ä±ï¿½
         }
     }
 
-    // °¡Àå °¡±î¿î Àû µû¶ó°¡±â
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ó°¡±ï¿½
     private void FollowClosestEnemy()
     {
-        // ÇöÀç Å¸°ÙÀÌ nullÀÌ°Å³ª Å¸°ÙÀÌ ÆÄ±«µÇ¾úÀ» °æ¿ì »õ·Î¿î Å¸°Ù Ã£±â
+        // ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ nullï¿½Ì°Å³ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½Ä±ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ Å¸ï¿½ï¿½ Ã£ï¿½ï¿½
         if (targetEnemy == null || !targetEnemy.gameObject.activeSelf)
         {
             FindClosestEnemy();
         }
 
-        // Å¸°ÙÀÌ ÀÖÀ» ¶§ µû¶ó°¡±â
+        // Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ó°¡±ï¿½
         if (targetEnemy != null)
         {
             Vector3 direction = targetEnemy.position - transform.position;
@@ -67,19 +67,22 @@ public class Tornado : MonoBehaviour
 
     private void FindClosestEnemy()
     {
-        // Æ¯Á¤ ¹Ý°æ ³»¿¡¼­ Enemy ÅÂ±×¸¦ °¡Áø Àû Ã£±â
+        // Æ¯ï¿½ï¿½ ï¿½Ý°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Enemy ï¿½Â±×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã£ï¿½ï¿½
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, followRange);
 
         if (colliders.Length > 0)
         {
-            // °¡Àå °¡±î¿î Àû Ã£±â
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã£ï¿½ï¿½
             float closestDistance = float.MaxValue;
 
             foreach (Collider2D collider in colliders)
             {
                 if (collider.CompareTag("Enemy") || collider.CompareTag("Monster"))
                 {
-                    float distance = Vector3.Distance(transform.position, collider.transform.position);
+                    float distance = Vector3.Distance(
+                        transform.position,
+                        collider.transform.position
+                    );
                     if (distance < closestDistance)
                     {
                         closestDistance = distance;
@@ -93,23 +96,21 @@ public class Tornado : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy"|| collision.gameObject.tag == "Monster")
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Monster")
         {
             gameObject.layer = LayerMask.NameToLayer("NoCollision");
             Invoke("ResetLayer", attackInterval);
         }
     }
 
-
     void ResetLayer()
     {
-        // Ãæµ¹ °¡´ÉÇØÁö¸é ´Ù½Ã ¿ø·¡ÀÇ Layer·Î º¯°æ
+        // ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Layerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         gameObject.layer = LayerMask.NameToLayer("Default");
     }
 
-
-    // ¾Ö´Ï¸ÞÀÌ¼Ç Àç»ý ÇÔ¼ö
-     void PlayAnimation(string animationName)
+    // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
+    void PlayAnimation(string animationName)
     {
         animator.Play(animationName);
     }
