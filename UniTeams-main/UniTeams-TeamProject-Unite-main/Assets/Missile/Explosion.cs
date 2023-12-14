@@ -4,23 +4,21 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    public float damage;
-    public int per;
+    public int damage;
 
-    public void Init(float damage, int per)
-    {
-        this.damage = damage;
-        this.per = per;
-
-    }
     void Start()
     {
         Destroy(gameObject,0.62f);
     }
 
     // Update is called once per frame
-    void Update()
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Monster")
+        {
+            if (!collision.isActiveAndEnabled)
+                return;
+            collision.GetComponent<Monster>().OnHit(damage);
+        }
     }
 }

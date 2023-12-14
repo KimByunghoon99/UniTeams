@@ -35,11 +35,7 @@ public class PlayerSkill : MonoBehaviour
 
     void Start()
     {
-    QCoolTime = 15f;
-    WCoolTime = 20f;
-    ECoolTime = 10f;
-    RCoolTime = 30f;
-}
+    }
 
     void CalTargetPos()
     {

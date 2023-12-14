@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Lightning : MonoBehaviour
 {
-    public float damage;
+    public int damage;
 
     void Start()
     {
@@ -13,8 +13,13 @@ public class Lightning : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Monster")
+        {
+            if (!collision.isActiveAndEnabled)
+                return;
+            collision.GetComponent<Monster>().OnHit(damage);
+        }
     }
 }
