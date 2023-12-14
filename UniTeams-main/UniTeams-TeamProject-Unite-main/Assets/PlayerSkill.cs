@@ -76,7 +76,7 @@ public class PlayerSkill : MonoBehaviour
                 }
                 else
                 {
-                    if (BaseAttack == 0) //ÆòÅ¸°­È­Áö¼Ó½Ã°£°ú ÄðÅ¸ÀÓ »çÀÌ ½Ã°£
+                    if (BaseAttack == 0) //ï¿½ï¿½Å¸ï¿½ï¿½È­ï¿½ï¿½ï¿½Ó½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
                     {
                         CoolTime = QReadyTime - Time.time;
                         RangeIndicator.GetComponent<RangeIndicator>().BaseAttackShowCoolTime(CoolTime);
@@ -188,15 +188,15 @@ public class PlayerSkill : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("½ºÅ³ ¹üÀ§ ¾È¿¡ ÀûÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+                        Debug.Log("ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ ï¿½È¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.");
                     }
                     break;
                 case 11:
                     PlayerMoveToClick player = GetComponent<PlayerMoveToClick>();
-                    if (player.playerHP > PlayerMaxHP - HealAmount) //Ç®ÇÇ±îÁö¸¸ Ã¼·Â Ã¤¿öÁÜ
+                    if (player.playerHP > PlayerMaxHP - HealAmount) //Ç®ï¿½Ç±ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½ Ã¤ï¿½ï¿½ï¿½ï¿½
                         player.playerHP = PlayerMaxHP;
-                    else if (player.playerHP == PlayerMaxHP) { // Ç®ÇÇ¸é ¹ßµ¿ ¾ÈµÊ
-                        Debug.Log("ÇÃ·¹ÀÌ¾îÀÇ Ã¼·ÂÀÌ ÀÌ¹Ì °¡µæÃ¡½À´Ï´Ù.");
+                    else if (player.playerHP == PlayerMaxHP) { // Ç®ï¿½Ç¸ï¿½ ï¿½ßµï¿½ ï¿½Èµï¿½
+                        Debug.Log("ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¡ï¿½ï¿½ï¿½Ï´ï¿½.");
                         break;
                     }   
                     else
@@ -219,12 +219,12 @@ public class PlayerSkill : MonoBehaviour
                         }
                         else
                         {
-                            Debug.Log("ÀûÀ» ¼±ÅÃÇØÁÖ¼¼¿ä.");
+                            Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.");
                         }
                     }
                     else
                     {
-                        Debug.Log("¾Æ¹«°Íµµ ¼±ÅÃµÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+                        Debug.Log("ï¿½Æ¹ï¿½ï¿½Íµï¿½ ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ ï¿½Ê¾Ò½ï¿½ï¿½Ï´ï¿½.");
                     }
                     break;
                 default:
@@ -258,40 +258,40 @@ public class PlayerSkill : MonoBehaviour
     {
         if (lightningGenerator == null)
         {
-            Debug.LogError("lightningGenerator°¡ nullÀÔ´Ï´Ù. ActivateLightningSkillÀ» È£ÃâÇÏ±â Àü¿¡ ÇÒ´çµÇ¾ú´ÂÁö È®ÀÎÇÏ½Ê½Ã¿À.");
+            Debug.LogError("lightningGeneratorï¿½ï¿½ nullï¿½Ô´Ï´ï¿½. ActivateLightningSkillï¿½ï¿½ È£ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò´ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï½Ê½Ã¿ï¿½.");
         }
-        // LightningGenerator ½ºÅ©¸³Æ®ÀÇ GenerateLightning ¸Þ¼­µå¸¦ È£ÃâÇÏ¿© ¹ø°³¸¦ »ý¼º
+        // LightningGenerator ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ GenerateLightning ï¿½Þ¼ï¿½ï¿½å¸¦ È£ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         StartCoroutine(lightningGenerator.GenerateLightning());
     }
     bool IsEnemyInRange()
     {
         CalTargetPos();
         followRange = TornadoPrefab.GetComponent<Tornado>().followRange;
-        // targetPos ÁÖº¯¿¡ ¹Ý°æ followRange ¾È¿¡ ÀÖ´Â ¸ðµç ÄÝ¶óÀÌ´õµéÀ» °¡Á®¿È
+        // targetPos ï¿½Öºï¿½ï¿½ï¿½ ï¿½Ý°ï¿½ followRange ï¿½È¿ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ ï¿½Ý¶ï¿½ï¿½Ì´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         Collider2D[] colliders = Physics2D.OverlapCircleAll(targetPos, followRange);
 
-        // °¡Á®¿Â ÄÝ¶óÀÌ´õµéÀ» ¼øÈ¸ÇÏ¸é¼­ Enemy ÅÂ±×¸¦ °¡Áø ¹°Ã¼°¡ ÀÖ´ÂÁö È®ÀÎ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ý¶ï¿½ï¿½Ì´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½Ï¸é¼­ Enemy ï¿½Â±×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
         foreach (Collider2D collider in colliders)
         {
             if (collider.CompareTag("Enemy") || collider.CompareTag("Monster"))
             {
-                // Enemy ÅÂ±×¸¦ °¡Áø ¹°Ã¼°¡ ÀÖÀ¸¸é true ¹ÝÈ¯
+                // Enemy ï¿½Â±×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ true ï¿½ï¿½È¯
                 return true;
             }
         }
 
-        // Enemy ÅÂ±×¸¦ °¡Áø ¹°Ã¼°¡ ¾øÀ¸¸é false ¹ÝÈ¯
+        // Enemy ï¿½Â±×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ false ï¿½ï¿½È¯
         return false;
     }
 
     private void FindClosestEnemy()
     {
-        // Æ¯Á¤ ¹Ý°æ ³»¿¡¼­ Enemy ÅÂ±×¸¦ °¡Áø Àû Ã£±â
+        // Æ¯ï¿½ï¿½ ï¿½Ý°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Enemy ï¿½Â±×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã£ï¿½ï¿½
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange);
 
         if (colliders.Length > 0)
         {
-            // °¡Àå °¡±î¿î Àû Ã£±â
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã£ï¿½ï¿½
             float closestDistance = float.MaxValue;
 
             foreach (Collider2D collider in colliders)
@@ -310,7 +310,7 @@ public class PlayerSkill : MonoBehaviour
     }
     void ResetLayer()
     {
-        // Ãæµ¹ °¡´ÉÇØÁö¸é ´Ù½Ã ¿ø·¡ÀÇ Layer·Î º¯°æ
+        // ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Layerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         gameObject.layer = LayerMask.NameToLayer("Default");
     }
 }

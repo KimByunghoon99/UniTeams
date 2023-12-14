@@ -2,9 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMoveToClick : MonoBehaviour
 {
+    public Slider HealthBar;
+
     [SerializeField]
     float speed = 5f;
     bool isSlow = false;
@@ -119,5 +122,6 @@ public class PlayerMoveToClick : MonoBehaviour
                 animator.SetBool("iswalk", false);
             }
         }
+        HealthBar.value = this.playerHP;
     }
 }
