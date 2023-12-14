@@ -19,21 +19,7 @@ public class SkillSelect1 : MonoBehaviour
         HideButtons();
     }
 
-    void Update()
-    {
-        // 일정 시간이 경과하면 버튼을 보이게 함
-        if (!buttonsVisible)
-        {
-            timer += Time.deltaTime;
-
-            if (timer >= delayToShowButtons)
-            {
-                ShowButtons();
-                buttonsVisible = true;
-            }
-        }
-
-    }
+    
 
     // 버튼 숨기기
     void HideButtons()
@@ -45,7 +31,7 @@ public class SkillSelect1 : MonoBehaviour
 
 
     // 버튼 보이기
-    void ShowButtons()
+    public void ShowButtons()
     {
         skillButton1.gameObject.SetActive(true);
         skillButton2.gameObject.SetActive(true);
