@@ -48,7 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c84b3f847f1aaa1488c7bf89a9807b9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  hp: 80
+  speed: 1
   attckConstant: 250
   monsterState: 0
   player: {fileID: 0}

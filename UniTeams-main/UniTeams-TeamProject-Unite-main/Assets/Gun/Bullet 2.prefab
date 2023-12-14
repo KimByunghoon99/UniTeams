@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6700228125111146551}
   - component: {fileID: 3368596301399980306}
   - component: {fileID: 1383945191818798560}
-  - component: {fileID: 1862098267155956163}
+  - component: {fileID: -8802502789517910074}
   - component: {fileID: 2568436683304869183}
   m_Layer: 0
   m_Name: Bullet 2
@@ -108,7 +108,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1862098267155956163
+--- !u!114 &-8802502789517910074
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,12 +117,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 9139490250179217102}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8e37576bf40496448aa41d2694aae72, type: 3}
+  m_Script: {fileID: 11500000, guid: a273980602304184a911966da9d9ac66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 25
   lifetime: 5
   BulletSpeed: 15
+  MaxHit: 7
 --- !u!61 &2568436683304869183
 BoxCollider2D:
   m_ObjectHideFlags: 0

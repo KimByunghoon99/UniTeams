@@ -235,23 +235,31 @@ public class PlayerSkill : MonoBehaviour
         }
         FindClosestEnemy();
         CalEnemyDirection();
-        ShotStack = BulletGenerator.GetComponent<BulletGenerator>().GenerateBullet(BaseAttack, direction, transform.position);
-        if (BaseAttack == 1 && ShotStack > 20) 
+        if (Input.GetKey(KeyCode.Space)&& BaseAttack == 1)
         {
-            BaseAttack = 0;
-            RangeIndicator.GetComponent<RangeIndicator>().HideBaseAttackIcon();
-        }
-        if (BaseAttack == 2 && ShotStack > 10)
-        {
-            BaseAttack = 0;
-            RangeIndicator.GetComponent<RangeIndicator>().HideBaseAttackIcon();
+            ShotStack = BulletGenerator.GetComponent<BulletGenerator>().GenerateBullet(BaseAttack, direction, transform.position);
 
+            if ( ShotStack > 20)
+            {
+                BaseAttack = 0;
+                RangeIndicator.GetComponent<RangeIndicator>().HideBaseAttackIcon();
+            }
         }
-        if (BaseAttack == 3 && ShotStack > 5)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            BaseAttack = 0;
-            RangeIndicator.GetComponent<RangeIndicator>().HideBaseAttackIcon();
+            ShotStack = BulletGenerator.GetComponent<BulletGenerator>().GenerateBullet(BaseAttack, direction, transform.position);
+            if (BaseAttack == 2 && ShotStack > 10)
+            {
+                BaseAttack = 0;
+                RangeIndicator.GetComponent<RangeIndicator>().HideBaseAttackIcon();
 
+            }
+            if (BaseAttack == 3 && ShotStack > 5)
+            {
+                BaseAttack = 0;
+                RangeIndicator.GetComponent<RangeIndicator>().HideBaseAttackIcon();
+
+            }
         }
     }
     void ActivateLightningSkill()

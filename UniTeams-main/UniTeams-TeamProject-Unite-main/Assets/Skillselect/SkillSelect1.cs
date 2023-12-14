@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,19 +9,19 @@ public class SkillSelect1 : MonoBehaviour
     public Button skillButton1;
     public Button skillButton2;
     public Button skillButton3;
+    public GameObject SkillSlot;
     public float delayToShowButtons = 5.0f;
     private bool buttonsVisible = false;
     private float timer = 0.0f;
 
     void Start()
     {
-        // °ÔÀÓ ½ÃÀÛ ½Ã ¹öÆ° ¼û±â±â
         HideButtons();
     }
 
     void Update()
     {
-        // ÀÏÁ¤ ½Ã°£ÀÌ °æ°úÇÏ¸é ¹öÆ°À» º¸ÀÌ°Ô ÇÔ
+        // ì¼ì • ì‹œê°„ì´ ê²½ê³¼í•˜ë©´ ë²„íŠ¼ì„ ë³´ì´ê²Œ í•¨
         if (!buttonsVisible)
         {
             timer += Time.deltaTime;
@@ -31,18 +32,19 @@ public class SkillSelect1 : MonoBehaviour
                 buttonsVisible = true;
             }
         }
+
     }
 
-    // ¹öÆ° ¼û±â±â
+    // ë²„íŠ¼ ìˆ¨ê¸°ê¸°
     void HideButtons()
     {
         skillButton1.gameObject.SetActive(false);
         skillButton2.gameObject.SetActive(false);
         skillButton3.gameObject.SetActive(false);
     }
-   
 
-    // ¹öÆ° º¸ÀÌ±â
+
+    // ë²„íŠ¼ ë³´ì´ê¸°
     void ShowButtons()
     {
         skillButton1.gameObject.SetActive(true);
@@ -50,11 +52,12 @@ public class SkillSelect1 : MonoBehaviour
         skillButton3.gameObject.SetActive(true);
     }
 
-    // ¹öÆ° Å¬¸¯ ½Ã È£ÃâµÇ´Â ÇÔ¼ö
+    // ë²„íŠ¼ í´ë¦­ ì‹œ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜
     public void OnSkillButtonClick(int buttonIndex)
     {
         GameObject Player = GameObject.FindWithTag("Player");
         Debug.Log("Clicked Button Index: " + buttonIndex);
+        SkillSlot.GetComponent<SlotManager>().SetSkillIcon(buttonIndex);
         switch (buttonIndex)
         {
             case 1:
