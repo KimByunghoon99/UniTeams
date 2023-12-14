@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class MiddleBossMonster : MonoBehaviour
+public class MiddleBossMonster : MonoBehaviour, Monster
 {
     public enum MonsterState
     {
@@ -210,19 +210,13 @@ public class MiddleBossMonster : MonoBehaviour
         }
     }
 
-    public void OnHit(int weaponTag)
+    public void OnHit(int damage)
     {
-        switch (weaponTag)
-        {
-            case 1:
-                Debug.Log("몬스터 공격받음 처리");
-                hp -= 35;
+        Debug.Log("1번째 보스 사망");
+        hp -= damage;
 
-                if (hp <= 0)
-                    Die();
-
-                return;
-        }
+        if (hp <= 0)
+            Die();
     }
 
     void Die()
