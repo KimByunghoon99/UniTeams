@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class LightningGenerator : MonoBehaviour
 {
-    public GameObject lightningPrefab; // Lightning ÇÁ¸®ÆÕÀ» ÇÒ´çÇÏ¼¼¿ä.
-    public float skillRange = 5f; // ½ºÅ³ÀÇ ¹üÀ§¸¦ ¼³Á¤ÇÏ¼¼¿ä.
-    public int numberOfTargets = 5; // »ý¼ºÇÒ LightningÀÇ °³¼ö¸¦ ¼³Á¤ÇÏ¼¼¿ä.
-    public float delayBetweenStrikes = 0.3f; // °¢ Lightning »ý¼º °£ÀÇ µô·¹ÀÌ¸¦ ¼³Á¤ÇÏ¼¼¿ä.
+    public GameObject lightningPrefab; // Lightning ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò´ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½.
+    public float skillRange = 5f; // ï¿½ï¿½Å³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½.
+    public int numberOfTargets = 5; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Lightningï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½.
+    public float delayBetweenStrikes = 0.3f; // ï¿½ï¿½ Lightning ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½.
 
-    void Start()
-    {
-    }
+    void Start() { }
 
     public IEnumerator GenerateLightning()
     {
-        // ÁÖº¯ ¸ó½ºÅÍ¸¦ Ã£¾Æ ¸®½ºÆ®¿¡ ÀúÀå
+        // ï¿½Öºï¿½ ï¿½ï¿½ï¿½Í¸ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         List<Transform> nearbyMonsters = new List<Transform>();
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, skillRange);
         foreach (var collider in colliders)
@@ -25,19 +23,32 @@ public class LightningGenerator : MonoBehaviour
                 nearbyMonsters.Add(collider.transform);
             }
         }
-        nearbyMonsters.Sort((a, b) => Vector2.Distance(transform.position, a.position).CompareTo(Vector2.Distance(transform.position, b.position)));
+        nearbyMonsters.Sort(
+            (a, b) =>
+                Vector2
+                    .Distance(transform.position, a.position)
+                    .CompareTo(Vector2.Distance(transform.position, b.position))
+        );
 
-        // ÃÖ´ë 5°³ÀÇ ¸ó½ºÅÍ¿¡°Ô LightningÀ» »ý¼º
+        // ï¿½Ö´ï¿½ 5ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í¿ï¿½ï¿½ï¿½ Lightningï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         for (int i = 0; i < Mathf.Min(numberOfTargets, nearbyMonsters.Count); i++)
         {
             Transform targetMonster = nearbyMonsters[i];
             if (targetMonster != null)
             {
-                // LightningÀ» ¸ó½ºÅÍÀÇ À§Ä¡¿¡ »ý¼º
-                Vector3 spawnPosition = new Vector3(targetMonster.position.x, targetMonster.position.y + 0.3f, targetMonster.position.z);
-                GameObject lightning = Instantiate(lightningPrefab, spawnPosition, Quaternion.identity);
+                // Lightningï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                Vector3 spawnPosition = new Vector3(
+                    targetMonster.position.x,
+                    targetMonster.position.y + 0.3f,
+                    targetMonster.position.z
+                );
+                GameObject lightning = Instantiate(
+                    lightningPrefab,
+                    spawnPosition,
+                    Quaternion.identity
+                );
 
-                // ¸ó½ºÅÍ À§Ä¡¿¡ »ý¼ºµÈ LightningÀº ÀÌµ¿ÇÏÁö ¾ÊÀ½
+                // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Lightningï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 yield return new WaitForSeconds(delayBetweenStrikes);
             }
         }

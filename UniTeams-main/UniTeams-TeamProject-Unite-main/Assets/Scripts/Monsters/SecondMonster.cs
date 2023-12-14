@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class SecondMonster : MonoBehaviour
+public class SecondMonster : MonoBehaviour, Monster
 {
     public enum MonsterState
     {
@@ -11,7 +11,7 @@ public class SecondMonster : MonoBehaviour
         Dead
     }
 
-    protected int hp = 100;
+    public int hp = 100;
 
     [SerializeField]
     protected float speed = 4f;
@@ -176,24 +176,16 @@ public class SecondMonster : MonoBehaviour
         }
     }
 
-    public void OnHit(int weaponTag)
+    public void OnHit(int damage)
     {
-        switch (weaponTag)
-        {
-            case 1:
-                Debug.Log("몬스터 공격받음 처리");
-                hp -= 35;
+        hp -= damage;
 
-                if (hp <= 0)
-                    Die();
-
-                return;
-        }
+        if (hp <= 0)
+            Die();
     }
 
     void Die()
     {
-        // 죽을 때 애니메이션 처리도 나중에 추가
         if (questManager.GetComponent<QuestManager>().SecondMonsterKill != -1)
         {
             questManager.GetComponent<QuestManager>().SecondMonsterKill++;
