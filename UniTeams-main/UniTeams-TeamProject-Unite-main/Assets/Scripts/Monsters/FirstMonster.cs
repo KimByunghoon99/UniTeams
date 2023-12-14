@@ -1,11 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class FirstMonster : MonoBehaviour, Monster
 {
-    public Slider HealthBar;
     public enum MonsterState
     {
         Patrol,
@@ -47,8 +44,6 @@ public class FirstMonster : MonoBehaviour, Monster
 
     void Update()
     {
-        HealthBar.value = this.hp;
-
         switch (monsterState)
         {
             case MonsterState.Patrol:
