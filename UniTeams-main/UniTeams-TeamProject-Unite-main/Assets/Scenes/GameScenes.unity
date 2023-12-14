@@ -208,11 +208,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2447262617972445623, guid: 9dc9855d334df824d98021a480a752c4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.3
+      value: 2.08
       objectReference: {fileID: 0}
     - target: {fileID: 2447262617972445623, guid: 9dc9855d334df824d98021a480a752c4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.3
+      value: 1.11
       objectReference: {fileID: 0}
     - target: {fileID: 2447262617972445623, guid: 9dc9855d334df824d98021a480a752c4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -250,6 +250,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 891628872}
+    - target: {fileID: 7800277472779501888, guid: 9dc9855d334df824d98021a480a752c4, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8924937731302238871, guid: 9dc9855d334df824d98021a480a752c4, type: 3}
       propertyPath: m_Name
       value: SecondBossMonster
@@ -261,6 +265,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8924937731302238871, guid: 9dc9855d334df824d98021a480a752c4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 878430948}
+    - targetCorrespondingSourceObject: {fileID: 8924937731302238871, guid: 9dc9855d334df824d98021a480a752c4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 878430954}
   m_SourcePrefab: {fileID: 100100000, guid: 9dc9855d334df824d98021a480a752c4, type: 3}
 --- !u!1 &250893118
 GameObject:
@@ -1937,10 +1944,45 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!70 &878430954
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878430942}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.5, y: 0.0001}
+  m_Direction: 0
 --- !u!1 &891628872
 GameObject:
   m_ObjectHideFlags: 0
@@ -3491,9 +3533,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3076478653701848541, guid: e438a5a79d408a54db5b5f9381353275, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2089691661}
-    - targetCorrespondingSourceObject: {fileID: 3076478653701848541, guid: e438a5a79d408a54db5b5f9381353275, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2089691667}
     - targetCorrespondingSourceObject: {fileID: 7848767144105757759, guid: e438a5a79d408a54db5b5f9381353275, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1321293258}
@@ -5974,18 +6013,6 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
---- !u!114 &2089691667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2089691657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74fdff3857185314988a0cb37d114107, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2142554331
 GameObject:
   m_ObjectHideFlags: 0
@@ -6110,5 +6137,5 @@ SceneRoots:
   - {fileID: 690348093}
   - {fileID: 425220290}
   - {fileID: 346107691}
-  - {fileID: 374303188}
   - {fileID: 153461785}
+  - {fileID: 374303188}
