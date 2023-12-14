@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7669240401353567532}
+  - component: {fileID: 422267800456616451}
   - component: {fileID: 5587069005219442099}
   - component: {fileID: 8825243038203902849}
   - component: {fileID: 359338261275279770}
@@ -35,6 +36,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &422267800456616451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6961101234086458663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c84b3f847f1aaa1488c7bf89a9807b9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 4
+  attckConstant: 250
+  monsterState: 0
+  player: {fileID: 0}
+  questManager: {fileID: 0}
 --- !u!212 &5587069005219442099
 SpriteRenderer:
   m_ObjectHideFlags: 0

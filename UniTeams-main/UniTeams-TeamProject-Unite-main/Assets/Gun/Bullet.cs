@@ -16,8 +16,8 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector2.up * BulletSpeed * Time.deltaTime);
-
     }
+
     void DestroyBullet()
     {
         Destroy(gameObject);
@@ -25,8 +25,11 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Monster")
         {
+            if (!collision.isActiveAndEnabled)
+                return;
+            collision.GetComponent<Monster>().OnHit(10);
             DestroyBullet();
         }
     }

@@ -7,7 +7,7 @@ public class SecondGenerator : MonoBehaviour
     public GameObject monsterPrefab; // 몬스터 프리팹
     public int poolSize = 10; // 풀 사이즈
     public float spawnRate = 2f; // 스폰 비율 (초)
-    public Vector2 spawnArea = new Vector2(30f, 60f); // 스폰 영역
+    public Vector2 spawnArea = new Vector2(0f, 35f); // 스폰 영역
 
     private List<GameObject> monsterPool;
     private float nextSpawnTime;
@@ -45,6 +45,7 @@ public class SecondGenerator : MonoBehaviour
             {
                 monster.transform.position = GetRandomPosition();
                 monster.SetActive(true);
+                monster.GetComponent<SecondMonster>().hp = 100;
                 break;
             }
         }
