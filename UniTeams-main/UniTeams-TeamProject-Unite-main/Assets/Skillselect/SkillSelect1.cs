@@ -56,10 +56,10 @@ public class SkillSelect1 : MonoBehaviour
         skillButton2.gameObject.SetActive(true);
         skillButton3.gameObject.SetActive(true);
     }
-    public void DelayedSpawn()
+    /*public void DelayedSpawn()
     {
         SecondGenerator.GetComponent<SecondGenerator>().CreatePool();
-    }
+    }*/
 
     // 버튼 클릭 시 호출되는 함수
     public void OnSkillButtonClick(int buttonIndex)

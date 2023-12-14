@@ -121,7 +121,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5535450639994950965}
         m_TargetAssemblyTypeName: SkillSelect1, Assembly-CSharp
         m_MethodName: OnSkillButtonClick
         m_Mode: 3
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5535450639994950965}
         m_TargetAssemblyTypeName: SkillSelect1, Assembly-CSharp
         m_MethodName: OnSkillButtonClick
         m_Mode: 3
@@ -387,7 +387,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5535450639994950965}
         m_TargetAssemblyTypeName: SkillSelect1, Assembly-CSharp
         m_MethodName: OnSkillButtonClick
         m_Mode: 3
@@ -591,6 +591,11 @@ MonoBehaviour:
   skillButton1: {fileID: 258836932728813441}
   skillButton2: {fileID: 8703664275939902199}
   skillButton3: {fileID: 5989016959541315685}
+  SkillSlot: {fileID: 0}
+  FirstBossPrefab: {fileID: 0}
+  SecondGenerator: {fileID: 0}
+  SecondBossPrefab: {fileID: 0}
+  FinalBossPrefab: {fileID: 0}
   delayToShowButtons: 5
 --- !u!223 &3688820303088669700
 Canvas:
