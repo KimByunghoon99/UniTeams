@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 80
-  speed: 3
+  speed: 5
   attckConstant: 400
   monsterState: 0
   player: {fileID: 0}

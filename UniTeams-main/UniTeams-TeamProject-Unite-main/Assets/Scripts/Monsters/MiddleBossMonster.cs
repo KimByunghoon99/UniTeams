@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class MiddleBossMonster : MonoBehaviour, Monster
 {
@@ -11,7 +13,8 @@ public class MiddleBossMonster : MonoBehaviour, Monster
         Dead
     }
 
-    protected int hp = 500;
+    public int hp = 700;
+    public Slider Hp;
 
     [SerializeField]
     protected float speed = 4.5f;
@@ -76,6 +79,8 @@ public class MiddleBossMonster : MonoBehaviour, Monster
             case MonsterState.Dead:
                 break;
         }
+        Hp.value = this.hp;
+
     }
 
     void FixedUpdate()

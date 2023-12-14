@@ -120,10 +120,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6de92157efab3ef419e3315f5b2cea6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
-  duration: 20
-  attackInterval: 1
-  followSpeed: 2
+  damage: 20
+  duration: 10
+  attackInterval: 0.5
+  followSpeed: 6
   followRange: 5
 --- !u!61 &1544330078262698129
 BoxCollider2D:

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletThrough : MonoBehaviour
 {
-    public float damage;
+    public int damage;
     public float lifetime = 5f;
     public float BulletSpeed = 10f;
     public int MaxHit = 7;
@@ -27,10 +27,19 @@ public class BulletThrough : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Monster")
         {
+
+            if (!collision.isActiveAndEnabled)
+                return;
+
+            Monster monsterComponent = collision.GetComponent<Monster>();
+            if (monsterComponent != null)
+            {
+                monsterComponent.OnHit(damage);
+            }
             hit++;
-            if(hit >= MaxHit)
+            if (hit >= MaxHit)
             {
                 Destroy(gameObject);
             }

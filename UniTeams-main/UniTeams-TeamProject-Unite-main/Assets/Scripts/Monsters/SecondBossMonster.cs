@@ -1,7 +1,9 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class SecondBossMonster : MonoBehaviour
+
+public class SecondBossMonster : MonoBehaviour , Monster
 {
     public enum MonsterState
     {
@@ -11,7 +13,8 @@ public class SecondBossMonster : MonoBehaviour
         Dead
     }
 
-    protected int hp = 500;
+    public int hp = 1000;
+    public Slider Hp;
 
     [SerializeField]
     protected float speed = 4.5f;
@@ -64,6 +67,8 @@ public class SecondBossMonster : MonoBehaviour
             case MonsterState.Dead:
                 break;
         }
+        Hp.value = this.hp;
+
     }
 
     void FixedUpdate()
@@ -192,6 +197,7 @@ public class SecondBossMonster : MonoBehaviour
 
     public void OnHit(int damage)
     {
+        Debug.Log("1");
         hp -= damage;
 
         if (hp <= 0)

@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1acc0c73a93ae68429726d45383bcb6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 60
+  damage: 20
   lifetime: 5
   KnifeSpeed: 9
 --- !u!61 &7069741366557223671

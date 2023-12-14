@@ -1,5 +1,9 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+
 
 public class FinalBossMonster : MonoBehaviour, Monster
 {
@@ -11,7 +15,8 @@ public class FinalBossMonster : MonoBehaviour, Monster
         Dead
     }
 
-    protected int hp = 1500;
+    public int hp = 1500;
+    public Slider Hp;
 
     [SerializeField]
     protected float speed = 5.5f;
@@ -72,6 +77,7 @@ public class FinalBossMonster : MonoBehaviour, Monster
         {
             speed *= 1.03f;
         }
+        Hp.value = this.hp;
     }
 
     void FixedUpdate()
@@ -213,5 +219,7 @@ public class FinalBossMonster : MonoBehaviour, Monster
 
         monsterState = MonsterState.Dead;
         Destroy(gameObject);
+        SceneManager.LoadScene("ending");
+
     }
 }

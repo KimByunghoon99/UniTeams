@@ -27,6 +27,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Monster")
         {
+
             if (!collision.isActiveAndEnabled)
                 return;
 

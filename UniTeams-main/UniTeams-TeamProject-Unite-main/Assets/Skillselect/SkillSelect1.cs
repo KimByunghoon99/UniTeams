@@ -24,21 +24,6 @@ public class SkillSelect1 : MonoBehaviour
         HideButtons();
     }
 
-    void Update()
-    {
-        // 일정 시간이 경과하면 버튼을 보이게 함
-        if (!buttonsVisible)
-        {
-            timer += Time.deltaTime;
-
-            if (timer >= delayToShowButtons)
-            {
-                ShowButtons();
-                buttonsVisible = true;
-            }
-        }
-
-    }
 
     // 버튼 숨기기
     void HideButtons()
@@ -56,10 +41,10 @@ public class SkillSelect1 : MonoBehaviour
         skillButton2.gameObject.SetActive(true);
         skillButton3.gameObject.SetActive(true);
     }
-    /*public void DelayedSpawn()
+    public void DelayedSpawn()
     {
         SecondGenerator.GetComponent<SecondGenerator>().CreatePool();
-    }*/
+    }
 
     // 버튼 클릭 시 호출되는 함수
     public void OnSkillButtonClick(int buttonIndex)
@@ -86,8 +71,8 @@ public class SkillSelect1 : MonoBehaviour
             case 8:
             case 9:
                 Player.GetComponent<PlayerSkill>().EskillReady = buttonIndex;
-                BossPos = new Vector3(0,44,0);
-                Instantiate(SecondBossPrefab,BossPos, Quaternion.identity);
+                BossPos = new Vector3(0, 44, 0);
+                Instantiate(SecondBossPrefab, BossPos, Quaternion.identity);
                 break;
             case 10:
             case 11:

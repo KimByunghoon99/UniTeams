@@ -29,7 +29,12 @@ public class Knife : MonoBehaviour
         {
             if (!collision.isActiveAndEnabled)
                 return;
-            collision.GetComponent<Monster>().OnHit(damage);
+
+            Monster monsterComponent = collision.GetComponent<Monster>();
+            if (monsterComponent != null)
+            {
+                monsterComponent.OnHit(damage);
+            }
             DestroyKnife();
         }
     }

@@ -19,8 +19,8 @@ public class SecondMonster : MonoBehaviour, Monster
     [SerializeField]
     protected int attckConstant = 250;
 
-    protected float attackRange = 7f;
-    protected float chaseRange = 9f;
+    protected float attackRange = 8f;
+    protected float chaseRange = 14f;
     protected float patrolRange = 5f;
     public MonsterState monsterState;
     public GameObject player; // 지금은 드래그로 연결되어 있는데 나중에 Find로 수정해야 할 수도 있음

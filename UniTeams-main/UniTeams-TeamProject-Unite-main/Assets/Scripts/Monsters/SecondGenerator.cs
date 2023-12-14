@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class SecondGenerator : MonoBehaviour
@@ -38,12 +39,20 @@ public class SecondGenerator : MonoBehaviour
 
     public void SpawnMonster()
     {
-        foreach (GameObject monster in monsterPool)
+        if (monsterPool != null)
         {
-            monster.transform.position = GetRandomPosition();
-            monster.SetActive(true);
-            monster.GetComponent<SecondMonster>().hp = 100;
+            foreach (GameObject monster in monsterPool)
+            {
+                if (!monster.activeInHierarchy)
+                {
+                    monster.transform.position = GetRandomPosition();
+                    monster.SetActive(true);
+                    monster.GetComponent<SecondMonster>().hp = 100;
+                }
+
+            }
         }
+    
     }
 
     Vector3 GetRandomPosition()
