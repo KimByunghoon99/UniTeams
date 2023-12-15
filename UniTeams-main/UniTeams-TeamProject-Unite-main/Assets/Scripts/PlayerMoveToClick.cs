@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerMoveToClick : MonoBehaviour
@@ -92,6 +93,7 @@ public class PlayerMoveToClick : MonoBehaviour
         {
             animator.SetTrigger("dead");
             this.playerIsDead = true;
+            Invoke("GameOver", 3f);
         }
         if (this.playerIsDead == false)
         {
@@ -101,7 +103,10 @@ public class PlayerMoveToClick : MonoBehaviour
             }
         }
     }
-
+    private void GameOver(){
+        SceneManager.LoadScene("GameOver");
+    }
+    
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (this.playerHP <= 0)
