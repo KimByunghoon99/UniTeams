@@ -9,21 +9,26 @@ public class SlotManager : MonoBehaviour
     public Image SkillIcon1;
     public Image SkillIcon2;
     public Image SkillIcon3;
+    public Image CoolTimeIcon;
 
     void Start()
     {
         SkillIcon1.gameObject.SetActive(false);
         SkillIcon2.gameObject.SetActive(false);
         SkillIcon3.gameObject.SetActive(false);
+        CoolTimeIcon.gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void CoolTimeOn()
     {
-        
+        CoolTimeIcon.gameObject.SetActive(true);
     }
+    public void CoolTimeOff()
+    {
+        CoolTimeIcon.gameObject.SetActive(false);
 
-   public void SetSkillIcon(int num)
+    }
+    public void SetSkillIcon(int num)
     {
         switch (num)
         {

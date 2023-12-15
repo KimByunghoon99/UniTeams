@@ -14,6 +14,7 @@ public class PlayerSkill : MonoBehaviour
     public GameObject HealPrefab;
     public GameObject TornadoPrefab;
     public GameObject TargetLightningPrefab;
+    public GameObject SkillSlot1, SkillSlot2, SkillSlot3, SkillSlot4;
     Vector3 mousePos, transPos, targetPos;
     Vector2 direction;
     public int attackRange = 10;
@@ -58,6 +59,12 @@ public class PlayerSkill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Time.time < QReadyTime)
+            SkillSlot1.GetComponent<SlotManager>().CoolTimeOn();
+        else
+            SkillSlot1.GetComponent<SlotManager>().CoolTimeOff();
+
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             if(QskillReady == 0)
