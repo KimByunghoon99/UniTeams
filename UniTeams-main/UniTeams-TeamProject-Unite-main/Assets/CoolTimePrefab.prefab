@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8872841907362632929}
   - component: {fileID: 956575387858084717}
   m_Layer: 0
-  m_Name: 03_10
+  m_Name: CoolTimePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
