@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class MonsterGenerator : MonoBehaviour
@@ -9,7 +10,7 @@ public class MonsterGenerator : MonoBehaviour
     public float spawnRate = 2f; // 스폰 비율 (초)
     public Vector2 spawnArea = new Vector2(0f, 0f); // 스폰 영역
 
-    private List<GameObject> monsterPool;
+    public List<GameObject> monsterPool;
     private float nextSpawnTime;
 
     private void Start()
@@ -52,7 +53,7 @@ public class MonsterGenerator : MonoBehaviour
                     break;
                 }
             }
-        }     
+        }
     }
 
     Vector3 GetRandomPosition()

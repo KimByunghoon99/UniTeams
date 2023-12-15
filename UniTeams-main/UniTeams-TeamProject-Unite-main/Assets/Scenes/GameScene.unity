@@ -4180,9 +4180,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3076478653701848541, guid: e438a5a79d408a54db5b5f9381353275, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2089691661}
-    - targetCorrespondingSourceObject: {fileID: 3076478653701848541, guid: e438a5a79d408a54db5b5f9381353275, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2089691667}
     - targetCorrespondingSourceObject: {fileID: 7848767144105757759, guid: e438a5a79d408a54db5b5f9381353275, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1321293258}
@@ -7019,18 +7016,6 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
---- !u!114 &2089691667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2089691657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74fdff3857185314988a0cb37d114107, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2142554331
 GameObject:
   m_ObjectHideFlags: 0
